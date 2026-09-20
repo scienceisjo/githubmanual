@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>내가 만든 걸 인터넷에 올리기 — GitHub Pages 따라하기</title>
+<title>GitHub Pages 배포 따라하기 — 선생님용</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
@@ -124,6 +124,28 @@ main{max-width:720px;margin:0 auto;padding:20px 14px 18px}
 .copy{position:absolute;top:11px;right:11px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);color:#fff;font-family:var(--body);font-size:.74rem;font-weight:700;padding:6px 12px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:5px;transition:.15s}
 .copy:hover{background:rgba(255,255,255,.22)} .copy.done{background:var(--green);border-color:var(--green)}
 
+/* code sample viewer (s2) */
+.codesample{background:#202544;border-radius:16px;margin:14px 0;overflow:hidden;border:1px solid #2c3255;box-shadow:0 12px 30px -18px rgba(30,35,80,.6)}
+.cs-bar{display:flex;align-items:center;gap:10px;padding:9px 12px 9px 16px;background:#1a1e3a;border-bottom:1px solid #2c3255;flex-wrap:wrap}
+.cs-file{font-family:'SFMono-Regular',ui-monospace,Consolas,monospace;color:#eef0ff;font-size:.86rem;font-weight:700;display:flex;align-items:center;gap:7px}
+.cs-btns{margin-left:auto;display:flex;gap:7px;flex-wrap:wrap}
+.csbtn{border:none;font-family:var(--body);font-size:.77rem;font-weight:800;padding:7px 13px;border-radius:9px;cursor:pointer;display:flex;align-items:center;gap:5px;transition:.15s}
+.csbtn.copy2{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.24)}
+.csbtn.copy2:hover{background:rgba(255,255,255,.24)}
+.csbtn.copy2.done{background:var(--green);border-color:var(--green)}
+.csbtn.dl{background:var(--green);color:#fff}
+.csbtn.dl:hover{filter:brightness(1.08)}
+.codesample pre{margin:0;padding:14px 16px;overflow-x:auto}
+.codesample code{display:block;background:transparent;color:#eef0ff;padding:0;font-size:.82rem;line-height:1.55;white-space:pre;word-break:normal}
+
+/* live preview of the example */
+.preview-wrap{margin:14px 0 4px}
+.preview-lab{font-size:.83rem;color:var(--muted);font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.preview-frame{border-radius:14px;border:1px solid var(--line);background:linear-gradient(135deg,#5b6cf0,#7a6cf5);color:#fff;text-align:center;padding:32px 20px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.preview-frame .pf-emoji{font-size:2.7rem;margin-bottom:8px}
+.preview-frame .pf-title{font-family:var(--disp);font-size:1.32rem;margin-bottom:6px}
+.preview-frame .pf-sub{font-size:1rem;opacity:.95}
+
 /* two-method cards (s4) */
 .methods{display:flex;flex-direction:column;gap:14px;margin:14px 0}
 .method{border-radius:18px;padding:18px 20px;border:2px solid}
@@ -216,13 +238,13 @@ footer .credit{font-weight:800;color:var(--ink)}
 <!-- TOPBAR -->
 <div class="topbar">
   <div class="tb-inner">
-    <span class="tb-title">🚀 인터넷에 올리기</span>
+    <span class="tb-title">🚀 GitHub 배포하기</span>
     <div class="pills" id="pills">
       <button class="pill" data-tab="start">시작</button>
       <button class="pill" data-tab="s1">1 가입</button>
-      <button class="pill" data-tab="s2">2 코드확인</button>
+      <button class="pill" data-tab="s2">2 예제코드</button>
       <button class="pill" data-tab="s3">3 저장소</button>
-      <button class="pill" data-tab="s4">4 코드올리기 ⭐</button>
+      <button class="pill" data-tab="s4">4 올리기 ⭐</button>
       <button class="pill" data-tab="s5">5 Pages</button>
       <button class="pill" data-tab="s6">6 링크</button>
       <button class="pill" data-tab="help">안 될 때 🆘</button>
@@ -236,33 +258,33 @@ footer .credit{font-weight:800;color:var(--ink)}
   <!-- START -->
   <section class="panel active" id="panel-start">
     <div class="hero">
-      <span class="eb">🚀 중학생 따라하기 가이드</span>
-      <h1 class="disp">내가 만든 걸<br>인터넷에 올리기!</h1>
-      <p>AI(Gemini)로 만든 코드를 <b>GitHub Pages</b>에 올려서, 친구한테 링크로 자랑하는 방법이야. 컴퓨터만 있으면 10분이면 끝!</p>
-      <div class="note">📌 위쪽 <b>탭</b>이나 아래 <b>‘다음 →’</b> 버튼으로 한 단계씩 따라오면 돼. <b>막혀도 당황하지 마!</b> 맨 끝 <b>‘안 될 때 🆘’</b> 탭에 거의 모든 문제의 답이 정리돼 있어. <b>선생님 부르기 전에 거기부터 보고, 그래도 안 되면 AI한테 직접 물어보자!</b></div>
+      <span class="eb">🚀 선생님을 위한 따라하기 가이드</span>
+      <h1 class="disp">GitHub으로<br>인터넷에 올리기!</h1>
+      <p>아래 준비된 <b>예제 코드</b>를 <b>GitHub Pages</b>에 올리기만 하면, 누구나 볼 수 있는 <b>내 링크</b>가 생겨요. <b>정말 쉽습니다 — 선생님, 누구나 할 수 있어요!</b> 컴퓨터만 있으면 10분이면 끝!</p>
+      <div class="note">📌 위쪽 <b>탭</b>이나 아래 <b>‘다음 →’</b> 버튼으로 한 단계씩 따라오시면 돼요. <b>막혀도 당황하지 마세요!</b> 맨 끝 <b>‘안 될 때 🆘’</b> 탭에 거의 모든 문제의 해결법이 정리돼 있어요.</div>
     </div>
 
     <div class="block">
       <div class="block-title">🎒 준비물</div>
       <div class="prep">
-        <div class="p"><span class="ic">📧</span>구글 계정 (Gemini용)</div>
+        <div class="p"><span class="ic">📧</span>이메일 계정 (GitHub 가입용)</div>
         <div class="p"><span class="ic">💻</span>인터넷 되는 컴퓨터</div>
-        <div class="p"><span class="ic">🧩</span>Gemini Canvas로 만든 내 코드</div>
+        <div class="p"><span class="ic">🧩</span>예제 코드 (2단계에 준비돼 있어요)</div>
         <div class="p"><span class="ic">⏱️</span>10분의 여유</div>
       </div>
     </div>
 
     <div class="block">
       <div class="block-title">🛣️ 코드를 올리는 두 가지 방법</div>
-      <p style="font-size:.92rem;color:#34384f;margin-bottom:12px">4단계에서 아래 둘 중 <b>하나만</b> 고르면 돼. 미리 살짝 봐두자!</p>
+      <p style="font-size:.92rem;color:#34384f;margin-bottom:12px">4단계에서 아래 둘 중 <b>하나만</b> 고르면 돼요. 미리 살짝 봐 둘게요!</p>
       <div class="routes">
         <div class="route a">
           <div class="rb">A</div>
-          <div class="rt"><div class="rl">복붙 방식 (제일 추천!)</div>코드를 복사해서 GitHub에 바로 붙여넣기. <b>다운로드·이름 바꾸기가 없어서 실수가 거의 없어.</b> 파일이 1개일 때 최고.</div>
+          <div class="rt"><div class="rl">복붙 방식 (제일 추천!)</div>예제 코드를 <b>복사해서</b> GitHub에 바로 붙여넣기. 다운로드·이름 바꾸기가 없어서 <b>실수가 거의 없어요.</b></div>
         </div>
         <div class="route b">
           <div class="rb">B</div>
-          <div class="rt"><div class="rl">업로드 방식</div>파일로 다운로드해서 올리기. <b>파일이 여러 개</b>거나 다운로드가 편하면 이 방법. 대신 <b>파일 이름</b>을 조심해야 해(함정 있음 ⚠️).</div>
+          <div class="rt"><div class="rl">업로드 방식</div>예제 코드를 <b>파일로 내려받아</b> 올리기. 파일 업로드가 더 익숙하면 이 방법으로 하세요.</div>
         </div>
       </div>
     </div>
@@ -271,9 +293,9 @@ footer .credit{font-weight:800;color:var(--ink)}
       <div class="block-title">🗺️ 한눈에 보는 순서</div>
       <div class="overview">
         <span class="ov">1 가입</span><span class="a">→</span>
-        <span class="ov">2 코드확인</span><span class="a">→</span>
+        <span class="ov">2 예제코드</span><span class="a">→</span>
         <span class="ov">3 저장소</span><span class="a">→</span>
-        <span class="ov">4 코드올리기</span><span class="a">→</span>
+        <span class="ov">4 올리기</span><span class="a">→</span>
         <span class="ov">5 Pages</span><span class="a">→</span>
         <span class="ov">6 링크 🎉</span>
       </div>
@@ -287,52 +309,74 @@ footer .credit{font-weight:800;color:var(--ink)}
     <div class="step">
       <div class="step-head"><div class="num">1</div><h2 class="disp">GitHub 가입하기</h2></div>
       <div class="step-body">
-        <p><b>GitHub</b>는 내 파일을 올려두고 인터넷에 공개할 수 있는 곳이야. <b>무료</b>로 가입하면 돼!</p>
+        <p><b>GitHub</b>는 내 파일을 올려두고 인터넷에 공개할 수 있는 곳이에요. <b>무료</b>로 가입하면 됩니다!</p>
         <div class="mock"><span class="chip set">github.com 접속</span><span class="a">→</span><span class="chip gray">Sign up</span><span class="a">→</span><span class="chip gh">가입 완료</span></div>
         <ul class="sub-steps">
           <li>주소창에 <code>github.com</code> 을 입력해 접속 → 오른쪽 위 <b>Sign up</b> 클릭.</li>
           <li><b>이메일</b> 주소 입력 → Continue.</li>
           <li><b>비밀번호</b> 만들기 (영어+숫자 섞어서) → Continue.</li>
           <li><b>사용자 이름(Username)</b> 정하기 — 남이 안 쓰는 영어 이름으로. → Continue.</li>
-          <li>‘사람인지 확인’ <b>퍼즐</b>이 나오면 풀고 끝내기.</li>
-          <li>가입 메일로 온 <b>인증 코드(숫자)</b>를 입력하라고 하면 메일함을 열어 코드를 넣어줘.</li>
+          <li>‘사람인지 확인’ <b>퍼즐</b>이 나오면 풀고 넘어가기.</li>
+          <li>가입 메일로 온 <b>인증 코드(숫자)</b>를 입력하라고 하면 메일함을 열어 코드를 넣어 주세요.</li>
         </ul>
-        <div class="warn"><div class="co-h">⚠️ 사용자 이름(아이디)은 신중하게!</div>가입할 때 정한 <b>사용자 이름</b>이 곧 내 사이트 주소가 돼. 예) 아이디가 <code>hong-science</code>면 → 내 주소는 <code>hong-science.github.io/...</code> 로 시작해. 기억하기 쉬운 걸로 정하고 <b>잘 적어두자</b> (6단계에서 써!).</div>
-        <div class="tip"><div class="co-h">📶 교실 꿀팁</div>같은 와이파이로 여러 명이 한꺼번에 가입하면 막힐 수 있어. 그러면 <b>휴대폰 핫스팟</b>으로 가입해 봐.</div>
+        <div class="warn"><div class="co-h">⚠️ 사용자 이름(아이디)은 신중하게!</div>가입할 때 정한 <b>사용자 이름</b>이 곧 내 사이트 주소가 돼요. 예) 아이디가 <code>hong-science</code>면 → 내 주소는 <code>hong-science.github.io/...</code> 로 시작해요. 기억하기 쉬운 걸로 정하고 <b>잘 적어두세요</b> (6단계에서 씁니다!).</div>
+        <div class="tip"><div class="co-h">📶 연수장 꿀팁</div>같은 와이파이로 여러 분이 한꺼번에 가입하면 막힐 수 있어요. 그러면 <b>휴대폰 핫스팟</b>으로 가입해 보세요.</div>
         <div class="ok"><div class="co-h">✅ 완료!</div>로그인된 GitHub 화면이 보이면 가입 끝!</div>
       </div>
       <div class="navrow"><button class="navbtn prev" onclick="step(-1)">← 처음</button><span class="navpos">1 / 6</span><button class="navbtn next" onclick="step(1)">다음 →</button></div>
     </div>
   </section>
 
-  <!-- STEP 2 : 코드 확인 -->
+  <!-- STEP 2 : 예제 코드 -->
   <section class="panel" id="panel-s2">
     <div class="step">
-      <div class="step-head"><div class="num">2</div><h2 class="disp">내 코드가 ‘HTML’이 맞는지 확인 <span class="tag">중요</span></h2></div>
+      <div class="step-head"><div class="num">2</div><h2 class="disp">올릴 예제 코드 준비하기</h2></div>
       <div class="step-body">
-        <p>이제 <b>Gemini</b>로 가자! GitHub Pages는 <b>HTML</b>만 인터넷 페이지로 보여줄 수 있어. Gemini가 가끔 HTML이 아닌 코드를 줄 때가 있어서, <b>이걸 먼저 확인</b>해야 헛고생을 안 해.</p>
-        <p>👀 <b>Canvas 코드의 맨 윗줄</b>을 봐! (그림/화면만 보이고 코드가 안 보이면 <b>‘코드(Code)’ 보기</b>로 바꿔서 확인해.)</p>
-        <div class="gb">
-          <div class="row good">
-            <div class="lab">✅ 이렇게 시작하면 OK!</div>
-            <div class="codes"><span class="codebit">&lt;!DOCTYPE html&gt;</span><span class="codebit">&lt;html lang="ko"&gt;</span></div>
+        <p>먼저 인터넷에 올려볼 <b>연습용 코드</b>예요. 아래 코드를 그대로 쓰시면 됩니다. 화면을 열면 <b>축하 메시지</b>만 뜨는 아주 짧은 페이지라, 배포 연습에 딱 좋아요. <span style="color:var(--muted)">(익숙해지면 직접 만든 코드로도 똑같이 올릴 수 있어요.)</span></p>
+
+        <div class="codesample">
+          <div class="cs-bar">
+            <span class="cs-file">📄 index.html</span>
+            <span class="cs-btns">
+              <button class="csbtn copy2" onclick="copyExample(this)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>복사</button>
+              <button class="csbtn dl" onclick="downloadExample()">⬇️ 다운로드</button>
+            </span>
           </div>
-          <div class="row bad">
-            <div class="lab">❌ 이렇게 시작하면 아직 HTML이 아니야</div>
-            <div class="codes"><span class="codebit">import React from "react"</span><span class="codebit">function App() { ... }</span><span class="codebit">def main():  (← 파이썬)</span><span class="codebit">```jsx  /  ```python</span></div>
+          <pre><code id="exampleCode">&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;첫 배포 성공!&lt;/title&gt;
+  &lt;style&gt;
+    body{margin:0;min-height:100vh;display:flex;
+      flex-direction:column;align-items:center;justify-content:center;
+      text-align:center;font-family:'Malgun Gothic',sans-serif;
+      color:#fff;background:linear-gradient(135deg,#5b6cf0,#7a6cf5);}
+    h1{font-size:2rem;margin:0 0 14px;}
+    p{font-size:1.2rem;opacity:.95;margin:0;}
+    .emoji{font-size:4rem;margin-bottom:8px;}
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="emoji"&gt;🎉&lt;/div&gt;
+  &lt;h1&gt;GitHub으로 배포하기, 정말 쉽죠?&lt;/h1&gt;
+  &lt;p&gt;선생님, 누구나 할 수 있어요!&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+
+        <div class="preview-wrap">
+          <div class="preview-lab">👀 이 코드를 올리면 이렇게 보여요</div>
+          <div class="preview-frame">
+            <div class="pf-emoji">🎉</div>
+            <div class="pf-title">GitHub으로 배포하기, 정말 쉽죠?</div>
+            <div class="pf-sub">선생님, 누구나 할 수 있어요!</div>
           </div>
         </div>
-        <div class="warn">
-          <div class="co-h">⚠️ HTML이 아니면?</div>
-          아래 <b>마법의 문장</b>을 복사해서 Gemini 채팅에 그대로 붙여넣어 줘. 그러면 HTML 파일로 다시 만들어 줄 거야.
-        </div>
-        <div class="prompt">
-          <span class="pl">GEMINI에 붙여넣기</span>
-          <button class="copy" data-copy="fixPrompt"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>복사</button>
-          <code id="fixPrompt">지금 만든 걸 HTML 파일 하나로 다시 만들어줘. HTML, CSS, JavaScript를 전부 한 파일에 넣고, 맨 윗줄은 &lt;!DOCTYPE html&gt; 으로 시작하게 해줘. 다른 파일 없이 이 파일 하나만으로 작동해야 해.</code>
-        </div>
-        <div class="tip"><div class="co-h">🧩 파일이 여러 개로 나뉘어 나왔다면?</div>가끔 Gemini가 <code>index.html</code> + <code>style.css</code> + <code>script.js</code>처럼 여러 파일로 줄 때가 있어. 그래도 작동은 하지만, <b>위 마법의 문장으로 “한 파일로 합쳐줘”</b> 하면 훨씬 올리기 쉬워져. (한 파일이면 4단계 ‘복붙 방식’이 가능!)</div>
-        <div class="ok"><div class="co-h">✅ 통과 기준</div>코드 맨 윗줄이 <code>&lt;!DOCTYPE html&gt;</code> 이 되면 합격! 다음 단계로 ㄱㄱ</div>
+
+        <div class="tip"><div class="co-h">🧭 어떤 버튼을 눌러야 하나요?</div>📋 <b>복사</b>를 누르면 → 4단계 <b>‘복붙 방식(A)’</b>으로, ⬇️ <b>다운로드</b>를 누르면 <code>index.html</code> 파일이 저장되면서 → 4단계 <b>‘업로드 방식(B)’</b>으로 이어져요. <b>편한 쪽 하나만</b> 고르세요.</div>
+        <div class="ok"><div class="co-h">✅ 통과 기준</div>코드를 <b>복사</b>했거나 <code>index.html</code> 파일을 <b>내려받았으면</b> 준비 끝! 다음 단계로 ㄱㄱ</div>
       </div>
       <div class="navrow"><button class="navbtn prev" onclick="step(-1)">← 이전</button><span class="navpos">2 / 6</span><button class="navbtn next" onclick="step(1)">다음 →</button></div>
     </div>
@@ -343,10 +387,10 @@ footer .credit{font-weight:800;color:var(--ink)}
     <div class="step">
       <div class="step-head"><div class="num">3</div><h2 class="disp">새 저장소(Repository) 만들기</h2></div>
       <div class="step-body">
-        <p><b>GitHub</b>로 돌아가자! ‘저장소’는 내 파일을 올려두는 <b>방</b>이라고 생각하면 돼. 먼저 빈 방을 하나 만들 거야.</p>
+        <p><b>GitHub</b>로 돌아갑니다! ‘저장소’는 내 파일을 올려두는 <b>방</b>이라고 생각하면 돼요. 먼저 빈 방을 하나 만들 거예요.</p>
 
-        <div class="block-title" style="font-size:1.04rem;margin:14px 0 8px">🔘 ‘새 저장소’ 버튼 찾기 — 화면마다 달라!</div>
-        <p style="font-size:.92rem;color:#34384f">사람마다 화면이 조금씩 달라서 버튼 위치가 헷갈려. <b>아래 중 보이는 걸로 하나만</b> 하면 돼.</p>
+        <div class="block-title" style="font-size:1.04rem;margin:14px 0 8px">🔘 ‘새 저장소’ 버튼 찾기 — 화면마다 달라요!</div>
+        <p style="font-size:.92rem;color:#34384f">사람마다 화면이 조금씩 달라서 버튼 위치가 헷갈려요. <b>아래 중 보이는 것으로 하나만</b> 하면 됩니다.</p>
         <ul class="sub-steps">
           <li><b>오른쪽 위에 <code>+</code> 만 보이면</b> → <code>+</code> 클릭 → 펼쳐지는 메뉴에서 <b>New repository</b> 클릭.</li>
           <li><b><code>New</code> 또는 <code>New repository</code> 초록 버튼이 바로 보이면</b> → 그냥 클릭.</li>
@@ -354,21 +398,21 @@ footer .credit{font-weight:800;color:var(--ink)}
         </ul>
         <div class="ok">
           <div class="co-h">🦾 위가 다 안 보이거나 헷갈리면 — 무적의 방법!</div>
-          주소창에 이걸 그대로 입력해 → <code>github.com/new</code><br>
-          그러면 버튼을 안 찾아도 <b>저장소 만들기 화면이 바로</b> 떠. (이게 제일 확실해서 추천!)
+          주소창에 이것을 그대로 입력하세요 → <code>github.com/new</code><br>
+          그러면 버튼을 안 찾아도 <b>저장소 만들기 화면이 바로</b> 떠요. (이게 제일 확실해서 추천!)
         </div>
 
         <div class="block-title" style="font-size:1.04rem;margin:18px 0 8px">📝 만들기 화면 채우기</div>
         <ul class="sub-steps">
           <li><b>Repository name</b>: <b>띄어쓰기·한글 없이 영어</b>로 아무거나. (예: <code>my-first-web</code>) <span style="color:var(--red-dk);font-weight:700">공백·한글 ❌</span></li>
-          <li><b>Public</b>을 꼭 선택! <span style="color:var(--red-dk);font-weight:700">(Private이면 무료 Pages가 안 되고 친구도 못 봐!)</span></li>
-          <li>나머지(Description, README 등)는 <b>안 건드려도 돼.</b></li>
-          <li>맨 아래 초록 버튼 <b>Create repository</b> 클릭. <span style="color:var(--muted)">(버튼이 그냥 <code>Create</code>로 보일 수도 있어 — 같은 거야!)</span></li>
+          <li><b>Public</b>을 꼭 선택! <span style="color:var(--red-dk);font-weight:700">(Private이면 무료 Pages가 안 되고 다른 사람도 못 봐요!)</span></li>
+          <li>나머지(Description, README 등)는 <b>안 건드려도 돼요.</b></li>
+          <li>맨 아래 초록 버튼 <b>Create repository</b> 클릭. <span style="color:var(--muted)">(버튼이 그냥 <code>Create</code>로 보일 수도 있어요 — 같은 거예요!)</span></li>
         </ul>
         <div class="mock"><span class="chip gray">github.com/new</span><span class="a">→</span><span class="chip set">이름 입력</span><span class="a">→</span><span class="chip set">Public 체크</span><span class="a">→</span><span class="chip gh">Create repository</span></div>
 
-        <div class="warn"><div class="co-h">⚠️ ‘Create repository’ 버튼이 회색이라 안 눌려요</div>거의 다 <b>이름(Repository name)을 안 적어서</b>야. 영어 이름을 적으면 버튼이 <b>초록색</b>으로 바뀌면서 눌려.</div>
-        <div class="tip"><div class="co-h">🔗 알아두기</div>여기서 정한 <b>저장소 이름</b>도 내 주소에 들어가 → <code>(아이디).github.io/<b>저장소이름</b>/</code> (6단계에서 확인!)</div>
+        <div class="warn"><div class="co-h">⚠️ ‘Create repository’ 버튼이 회색이라 안 눌려요</div>거의 다 <b>이름(Repository name)을 안 적어서</b>예요. 영어 이름을 적으면 버튼이 <b>초록색</b>으로 바뀌면서 눌려요.</div>
+        <div class="tip"><div class="co-h">🔗 알아두기</div>여기서 정한 <b>저장소 이름</b>도 내 주소에 들어가요 → <code>(아이디).github.io/<b>저장소이름</b>/</code> (6단계에서 확인!)</div>
       </div>
       <div class="navrow"><button class="navbtn prev" onclick="step(-1)">← 이전</button><span class="navpos">3 / 6</span><button class="navbtn next" onclick="step(1)">다음 →</button></div>
     </div>
@@ -377,66 +421,66 @@ footer .credit{font-weight:800;color:var(--ink)}
   <!-- STEP 4 : 코드 올리기 (핵심) -->
   <section class="panel" id="panel-s4">
     <div class="step">
-      <div class="step-head"><div class="num">4</div><h2 class="disp">코드 올리기 + 파일 이름 정하기 <span class="tag">제일 중요 ⭐</span></h2></div>
+      <div class="step-head"><div class="num">4</div><h2 class="disp">예제 코드 올리기 <span class="tag">제일 중요 ⭐</span></h2></div>
       <div class="step-body">
-        <p>이제 만든 코드를 방(저장소)에 넣을 거야. <b>아래 두 방법 중 하나만</b> 고르면 돼. 어떤 방법이든 <b>파일 이름은 <code>index.html</code></b>이 되는 게 핵심이야 (이유는 아래에서 설명!).</p>
+        <p>이제 2단계의 예제 코드를 방(저장소)에 넣을 거예요. <b>아래 두 방법 중 하나만</b> 고르면 됩니다. 어떤 방법이든 <b>파일 이름은 <code>index.html</code></b>이 되는 게 핵심이에요 (이유는 아래에서 설명!).</p>
 
         <div class="methods">
           <!-- 방법 A -->
           <div class="method a">
-            <div class="mh">🅰️ 복붙 방식 <span class="mtag">파일 1개면 강추 · 실수 거의 없음</span></div>
-            <div class="mdesc">코드를 복사해서 GitHub에 바로 붙여넣어. <b>다운로드도, 이름 바꾸기도 없어서</b> 뒤에 나올 ‘이중 확장자 함정’이 아예 안 생겨!</div>
+            <div class="mh">🅰️ 복붙 방식 <span class="mtag">제일 추천 · 실수 거의 없음</span></div>
+            <div class="mdesc">코드를 복사해서 GitHub에 바로 붙여넣어요. <b>다운로드도, 이름 바꾸기도 없어서</b> 뒤에 나올 ‘이중 확장자 함정’이 아예 안 생겨요!</div>
             <ul class="sub-steps">
-              <li>Gemini Canvas에서 <b>코드 보기(Code)</b>로 바꾼 뒤 코드 전체 복사. <span style="color:var(--muted)">(코드 칸 안을 클릭 → <code>Ctrl+A</code> → <code>Ctrl+C</code>, 또는 복사 아이콘)</span></li>
+              <li><b>2단계</b>에서 예제 코드의 <b>📋 복사</b> 버튼 누르기. <span style="color:var(--muted)">(또는 코드 칸 클릭 → <code>Ctrl+A</code> → <code>Ctrl+C</code>)</span></li>
               <li>GitHub 저장소 화면에서 <b>Add file → Create new file</b> 클릭.</li>
               <li>맨 위 <b>파일 이름 칸</b>에 정확히 <code>index.html</code> 입력. <span style="color:var(--green-dk);font-weight:800">← 여기가 핵심! 꼭 index.html</span></li>
               <li>아래 큰 칸에 코드 <b>붙여넣기</b> (<code>Ctrl+V</code>).</li>
               <li>오른쪽 위(또는 아래) 초록 <b>Commit changes</b> → 작은 창이 뜨면 한 번 더 <b>Commit changes</b>.</li>
             </ul>
-            <div class="ok" style="margin-bottom:0"><div class="co-h">😎 왜 이게 편할까?</div>이름을 <b>직접 <code>index.html</code>로 타이핑</b>하니까 <code>index.html.html</code> 같은 함정이 안 생겨. 파일 1개면 이 방법이 제일 안전해!</div>
+            <div class="ok" style="margin-bottom:0"><div class="co-h">😎 왜 이게 편할까요?</div>이름을 <b>직접 <code>index.html</code>로 타이핑</b>하니까 <code>index.html.html</code> 같은 함정이 안 생겨요. 이 방법이 제일 안전해요!</div>
           </div>
 
           <!-- 방법 B -->
           <div class="method b">
-            <div class="mh">🅱️ 업로드 방식 <span class="mtag">파일 여러 개거나 다운로드가 편할 때</span></div>
-            <div class="mdesc">파일로 다운로드해서 올려. 대신 <b>파일 이름</b>을 조심해야 해 (바로 아래 함정 꼭 읽기 ⚠️).</div>
+            <div class="mh">🅱️ 업로드 방식 <span class="mtag">파일 업로드가 더 익숙할 때</span></div>
+            <div class="mdesc">예제 코드를 파일로 내려받아 올려요. 우리 예제 파일은 이미 이름이 <code>index.html</code>이라 <b>이름을 바꿀 필요가 없어요.</b></div>
             <ul class="sub-steps">
-              <li>Gemini Canvas 위쪽 <b>⬇️ 다운로드 아이콘</b> 클릭 → ‘다운로드’ 폴더에 저장됨.</li>
-              <li>파일 이름을 <b><code>index.html</code></b>로 바꾸기. <span style="color:var(--red-dk);font-weight:800">← 아래 ‘이중 확장자 함정’ 꼭 보기!</span></li>
+              <li><b>2단계</b>에서 <b>⬇️ 다운로드</b> 버튼 누르기 → ‘다운로드’ 폴더에 <code>index.html</code>로 저장됨.</li>
               <li>GitHub 저장소에서 <b>Add file → Upload files</b> 클릭.</li>
-              <li>파일을 화면 안으로 <b>끌어다 놓기</b> (여러 개면 한꺼번에 OK).</li>
+              <li>그 <code>index.html</code> 파일을 화면 안으로 <b>끌어다 놓기</b>.</li>
               <li>아래로 내려 초록 <b>Commit changes</b> 클릭.</li>
             </ul>
-            <div style="font-size:.85rem;color:#34384f;margin-top:2px">※ 파일이 여러 개면 <b>메인(첫 화면) 파일을 <code>index.html</code></b>로, 나머지는 이름 그대로 두면 돼.</div>
+            <div style="font-size:.85rem;color:#34384f;margin-top:2px">※ <b>직접 만든 코드</b>를 파일로 올릴 때는 파일 이름을 <code>index.html</code>로 맞춰야 해요 — 이때 아래 <b>‘이중 확장자 함정’</b>을 꼭 읽어 주세요.</div>
           </div>
         </div>
 
         <!-- 왜 index.html? -->
         <div class="why">
-          <div class="wh">🤔 왜 꼭 <code>index.html</code>이어야 해?</div>
-          <p>웹사이트는 누가 <b>폴더(주소)에 들어오면</b>, 거기서 <b>“기본으로 보여줄 대표 파일”</b>을 자동으로 찾아. 전 세계가 약속한 그 대표 파일 이름이 바로 <code>index.html</code>이야.</p>
-          <p>그래서 파일 이름이 <code>index.html</code>이면 → 주소 끝에 <b>아무것도 안 붙여도</b> 자동으로 열려! 👏</p>
-          <div class="ex">🍽️ <b>비유:</b> 식당(폴더)에 들어가면 직원이 자동으로 펼쳐주는 <b>‘대표 메뉴판’이 <code>index.html</code></b>이야. 이름이 다르면(예: <code>game.html</code>) 식당이 “그 메뉴판이 어디 있죠?” 하고 못 찾아서 → <b>404(없음)</b> 에러를 띄워. 그땐 주소 끝에 파일 이름을 직접 말해줘야(붙여야) 열려.</div>
-          <p style="margin-top:10px"><b>결론:</b> 파일이 1개면 <b>무조건 <code>index.html</code></b>이 제일 편하고 안전해! (안 그러면 6단계에서 404 만날 확률 ↑)</p>
+          <div class="wh">🤔 왜 꼭 <code>index.html</code>이어야 할까요?</div>
+          <p>웹사이트는 누가 <b>폴더(주소)에 들어오면</b>, 거기서 <b>“기본으로 보여줄 대표 파일”</b>을 자동으로 찾아요. 전 세계가 약속한 그 대표 파일 이름이 바로 <code>index.html</code>이에요.</p>
+          <p>그래서 파일 이름이 <code>index.html</code>이면 → 주소 끝에 <b>아무것도 안 붙여도</b> 자동으로 열려요! 👏</p>
+          <div class="ex">🍽️ <b>비유:</b> 식당(폴더)에 들어가면 직원이 자동으로 펼쳐 주는 <b>‘대표 메뉴판’이 <code>index.html</code></b>이에요. 이름이 다르면(예: <code>game.html</code>) 식당이 “그 메뉴판이 어디 있죠?” 하고 못 찾아서 → <b>404(없음)</b> 에러를 띄워요. 그땐 주소 끝에 파일 이름을 직접 붙여 줘야 열려요.</div>
+          <p style="margin-top:10px"><b>결론:</b> 파일이 1개면 <b>무조건 <code>index.html</code></b>이 제일 편하고 안전해요! (안 그러면 6단계에서 404 만날 확률 ↑)</p>
         </div>
 
         <!-- 이중 확장자 함정 -->
         <div class="trap">
-          <div class="th">⚠️ 업로드 방식에서 1등으로 많이 하는 실수<br>— ‘이중 확장자(<code>.html.html</code>)’ 함정!</div>
-          <p>Gemini에서 <b>다운로드한 파일은 이미 <code>.html</code> 파일</b>이야 (진짜 이름: 예 <code>myapp.html</code>). 그런데 윈도우는 보통 <code>.html</code>을 <b>숨겨서</b> 화면엔 <code>myapp</code>만 보여줘.</p>
+          <div class="th">⚠️ 직접 만든 파일을 올릴 때 1등 실수<br>— ‘이중 확장자(<code>.html.html</code>)’ 함정!</div>
+          <p><span style="color:var(--muted)">우리 예제 파일은 이미 <code>index.html</code>이라 해당 없어요. 나중에 <b>직접 만든 코드</b>를 다운로드해서 올릴 때를 위해 알아두세요.</span></p>
+          <p>파일을 <b>다운로드하면 이미 <code>.html</code> 파일</b>이에요 (진짜 이름: 예 <code>myapp.html</code>). 그런데 윈도우는 보통 <code>.html</code>을 <b>숨겨서</b> 화면엔 <code>myapp</code>만 보여줘요.</p>
           <p>이 상태에서 이름 바꾸기로 <b><code>index.html</code>이라고 통째로 치면?</b></p>
           <div class="arrow"><span>화면엔 <span class="bad">index.html</span></span><span class="ar">→</span><span>진짜 이름은 <span class="bad">index.html.html</span> 😱</span></div>
           <p>숨겨진 <code>.html</code> 뒤에 또 <code>.html</code>이 붙어버려 → 사이트가 <code>index.html</code>을 못 찾아서 <b>404!</b></p>
-          <div style="font-family:var(--disp);color:var(--red-dk);margin:12px 0 4px">✅ 올바른 방법 (이대로만 해!)</div>
+          <div style="font-family:var(--disp);color:var(--red-dk);margin:12px 0 4px">✅ 올바른 방법 (이대로만 하세요!)</div>
           <ul class="steps2">
             <li><b>먼저 확장자를 보이게</b> 켜기 — 윈도우 탐색기 위쪽 <b>보기(View) → ‘파일 확장명’</b>에 체크 ✅ <span style="color:var(--muted)">(맥: Finder → 설정 → 고급 → ‘모든 파일 확장자 보기’ 켜기)</span></li>
-            <li>이제 <code>myapp.html</code>처럼 <code>.html</code>이 보일 거야.</li>
-            <li>오른쪽 클릭 → <b>이름 바꾸기</b> → 앞의 <code>myapp</code>만 지우고 <code>index</code>로 → <code>index.html</code>. <span style="color:var(--red-dk);font-weight:800">점(.html)은 절대 건드리지 마!</span></li>
+            <li>이제 <code>myapp.html</code>처럼 <code>.html</code>이 보일 거예요.</li>
+            <li>오른쪽 클릭 → <b>이름 바꾸기</b> → 앞의 <code>myapp</code>만 지우고 <code>index</code>로 → <code>index.html</code>. <span style="color:var(--red-dk);font-weight:800">점(.html)은 절대 건드리지 마세요!</span></li>
             <li>진짜 이름이 정확히 <code>index.html</code>(점이 1개)인지 눈으로 확인.</li>
           </ul>
           <div class="gb" style="margin-top:6px">
             <div class="row good">
-              <div class="lab">✅ 이게 맞아 (점 .html 하나)</div>
+              <div class="lab">✅ 이게 맞아요 (점 .html 하나)</div>
               <div class="codes"><span class="codebit"><span class="o">index.html</span></span></div>
             </div>
             <div class="row bad">
@@ -446,8 +490,8 @@ footer .credit{font-weight:800;color:var(--ink)}
           </div>
         </div>
 
-        <div class="warn"><div class="co-h">⚠️ 공통 주의</div>폴더째 올리지 말고 <b>파일만</b> 올려. 저장소 첫 화면에 <code>index.html</code>이 <b>바로 보여야</b> 해(폴더 속에 숨으면 404).</div>
-        <div class="ok"><div class="co-h">✅ 여기까지 했으면</div>저장소 첫 화면에 <code>index.html</code>이 보일 거야. 이제 켜기만 하면 돼 → 다음!</div>
+        <div class="warn"><div class="co-h">⚠️ 공통 주의</div>폴더째 올리지 말고 <b>파일만</b> 올리세요. 저장소 첫 화면에 <code>index.html</code>이 <b>바로 보여야</b> 해요(폴더 속에 숨으면 404).</div>
+        <div class="ok"><div class="co-h">✅ 여기까지 했으면</div>저장소 첫 화면에 <code>index.html</code>이 보일 거예요. 이제 켜기만 하면 돼요 → 다음!</div>
       </div>
       <div class="navrow"><button class="navbtn prev" onclick="step(-1)">← 이전</button><span class="navpos">4 / 6</span><button class="navbtn next" onclick="step(1)">다음 →</button></div>
     </div>
@@ -458,17 +502,17 @@ footer .credit{font-weight:800;color:var(--ink)}
     <div class="step">
       <div class="step-head"><div class="num">5</div><h2 class="disp">GitHub Pages 켜기</h2></div>
       <div class="step-body">
-        <p>파일을 올렸다고 끝이 아니야. <b>인터넷에 공개하는 스위치</b>를 켜야 링크가 생겨!</p>
+        <p>파일을 올렸다고 끝이 아니에요. <b>인터넷에 공개하는 스위치</b>를 켜야 링크가 생겨요!</p>
         <div class="mock">
           <span class="chip set">⚙️ Settings</span><span class="a">→</span><span class="chip set">Pages</span><span class="a">→</span><span class="chip set">Branch: main / (root)</span><span class="a">→</span><span class="chip gh">Save</span>
         </div>
         <ul class="sub-steps">
-          <li><b>저장소 화면</b> 위쪽 메뉴에서 <b>Settings</b>(톱니바퀴) 클릭. <span style="color:var(--red-dk);font-weight:700">(맨 오른쪽 위 ‘내 프로필’ 설정 말고, 저장소 안의 Settings야!)</span></li>
+          <li><b>저장소 화면</b> 위쪽 메뉴에서 <b>Settings</b>(톱니바퀴) 클릭. <span style="color:var(--red-dk);font-weight:700">(맨 오른쪽 위 ‘내 프로필’ 설정 말고, 저장소 안의 Settings예요!)</span></li>
           <li>왼쪽 메뉴에서 <b>Pages</b> 클릭.</li>
           <li><b>Source</b>를 ‘Deploy from a branch’로 두고, <b>Branch</b>는 <code>main</code>, 폴더는 <code>/ (root)</code> 선택 → <b>Save</b>.</li>
         </ul>
-        <div class="tip"><div class="co-h">💡 Settings가 두 군데라 헷갈려!</div>GitHub엔 Settings가 ① <b>내 프로필</b> 설정, ② <b>저장소</b> 설정 두 군데 있어. <b>저장소 이름이 화면 위에 보이는</b> 쪽의 Settings를 눌러야 ‘Pages’ 메뉴가 나와!</div>
-        <div class="warn"><div class="co-h">⏳ Save 눌러도 링크가 바로 안 떠!</div>이건 <b>정상</b>이야. GitHub이 사이트를 ‘짓는(build)’ 데 시간이 걸려. <b>다음 단계(6)에서 기다렸다가 새로고침</b>하면 링크가 나타나!</div>
+        <div class="tip"><div class="co-h">💡 Settings가 두 군데라 헷갈려요!</div>GitHub엔 Settings가 ① <b>내 프로필</b> 설정, ② <b>저장소</b> 설정 두 군데 있어요. <b>저장소 이름이 화면 위에 보이는</b> 쪽의 Settings를 눌러야 ‘Pages’ 메뉴가 나와요!</div>
+        <div class="warn"><div class="co-h">⏳ Save 눌러도 링크가 바로 안 떠요!</div>이건 <b>정상</b>이에요. GitHub이 사이트를 ‘짓는(build)’ 데 시간이 걸려요. <b>다음 단계(6)에서 기다렸다가 새로고침</b>하면 링크가 나타나요!</div>
       </div>
       <div class="navrow"><button class="navbtn prev" onclick="step(-1)">← 이전</button><span class="navpos">5 / 6</span><button class="navbtn next" onclick="step(1)">다음 →</button></div>
     </div>
@@ -477,15 +521,15 @@ footer .credit{font-weight:800;color:var(--ink)}
   <!-- STEP 6 : 링크 -->
   <section class="panel" id="panel-s6">
     <div class="step">
-      <div class="step-head"><div class="num">6</div><h2 class="disp">내 링크 받기 (조금만 기다려!)</h2></div>
+      <div class="step-head"><div class="num">6</div><h2 class="disp">내 링크 받기 (조금만 기다려요!)</h2></div>
       <div class="step-body">
-        <div class="warn"><div class="co-h">⏳ 먼저! ‘기다리기’가 핵심이야</div>Save를 누른 <b>직후엔 링크가 아직 없어.</b> GitHub이 사이트를 만드는 데 보통 <b>1~2분</b>(가끔 3~5분) 걸려. <b>이때 “링크가 없네?” 하고 포기하면 안 돼!</b> 잠깐 기다렸다가 새로고침하면 돼.</div>
+        <div class="warn"><div class="co-h">⏳ 먼저! ‘기다리기’가 핵심이에요</div>Save를 누른 <b>직후엔 링크가 아직 없어요.</b> GitHub이 사이트를 만드는 데 보통 <b>1~2분</b>(가끔 3~5분) 걸려요. <b>이때 “링크가 없네?” 하고 포기하면 안 돼요!</b> 잠깐 기다렸다가 새로고침하면 돼요.</div>
 
-        <div class="block-title" style="font-size:1.04rem;margin:14px 0 8px">📍 링크는 어디에 떠?</div>
+        <div class="block-title" style="font-size:1.04rem;margin:14px 0 8px">📍 링크는 어디에 떠요?</div>
         <ul class="sub-steps">
           <li><b>Pages 설정 화면</b>(5단계에서 Save 누른 그 화면) 그대로 둔 채 <b>1~2분 기다리기.</b></li>
           <li>키보드 <b>F5</b>(또는 새로고침 버튼)로 그 화면을 <b>새로고침.</b></li>
-          <li>그러면 화면 <b>맨 위쪽</b>에 초록색 박스가 생기면서 이렇게 떠 👇</li>
+          <li>그러면 화면 <b>맨 위쪽</b>에 초록색 박스가 생기면서 이렇게 떠요 👇</li>
         </ul>
         <div class="linkbox">
           <div class="lh">🟢 Pages 화면 맨 위 — 이렇게 생긴 박스</div>
@@ -496,17 +540,17 @@ footer .credit{font-weight:800;color:var(--ink)}
               <span class="visit">Visit site</span>
             </div>
           </div>
-          <div style="font-size:.86rem;color:#34384f;margin-top:10px">이 박스 안의 <b>주소가 내 사이트 링크</b>야! <code>Visit site</code> 버튼을 누르거나, 주소를 복사해서 친구한테 보내면 돼.</div>
+          <div style="font-size:.86rem;color:#34384f;margin-top:10px">이 박스 안의 <b>주소가 내 사이트 링크</b>예요! <code>Visit site</code> 버튼을 누르거나, 주소를 복사해서 동료 선생님·학생에게 공유하면 돼요.</div>
         </div>
-        <div class="tip"><div class="co-h">🔧 박스가 안 보이고 “짓는 중”이면?</div>처음엔 “Your site is being built…” 같은 메시지나 빈 화면일 수 있어. <b>1~2분 더 기다리고 다시 새로고침(F5).</b> 진행 상황을 보고 싶으면 저장소 위쪽 <b>Actions</b> 탭 → <b>주황 점 = 짓는 중, 초록 체크 = 완성</b>이야.</div>
+        <div class="tip"><div class="co-h">🔧 박스가 안 보이고 “짓는 중”이면?</div>처음엔 “Your site is being built…” 같은 메시지나 빈 화면일 수 있어요. <b>1~2분 더 기다리고 다시 새로고침(F5).</b> 진행 상황을 보고 싶으면 저장소 위쪽 <b>Actions</b> 탭 → <b>주황 점 = 짓는 중, 초록 체크 = 완성</b>이에요.</div>
 
         <div class="block-title" style="font-size:1.04rem;margin:18px 0 8px">🧱 내 주소가 어떻게 생겼는지</div>
         <div class="tip" style="background:#f7f9ff;border-color:var(--line)"><div class="co-h" style="color:var(--indigo-dk)">주소 = 아이디 + 저장소 이름</div><code>https://(<b>내아이디</b>).github.io/(<b>저장소이름</b>)/</code><br><span style="font-size:.86rem;color:var(--muted)"><b>(내아이디)</b> = 1단계 사용자 이름 · <b>(저장소이름)</b> = 3단계에서 만든 이름</span></div>
-        <div class="ok"><div class="co-h">① 파일 이름이 index.html이면</div>주소 끝에 <b>아무것도 안 붙여도</b> 자동으로 열려.<br><code>https://(내아이디).github.io/(저장소이름)/</code></div>
-        <div class="tip"><div class="co-h">② 파일 이름이 다르면 (예: game.html)</div>주소 <b>맨 끝에 그 파일 이름을 붙여야</b> 열려!<br><code>https://(내아이디).github.io/(저장소이름)/game.html</code><br><span style="color:var(--amber-dk);font-weight:700">파일이 여러 개면</span> 각각 이름을 붙여서 들어가면 돼 → <code>.../quiz.html</code> …</div>
+        <div class="ok"><div class="co-h">① 파일 이름이 index.html이면</div>주소 끝에 <b>아무것도 안 붙여도</b> 자동으로 열려요.<br><code>https://(내아이디).github.io/(저장소이름)/</code></div>
+        <div class="tip"><div class="co-h">② 파일 이름이 다르면 (예: game.html)</div>주소 <b>맨 끝에 그 파일 이름을 붙여야</b> 열려요!<br><code>https://(내아이디).github.io/(저장소이름)/game.html</code><br><span style="color:var(--amber-dk);font-weight:700">파일이 여러 개면</span> 각각 이름을 붙여서 들어가면 돼요 → <code>.../quiz.html</code> …</div>
 
-        <div class="warn"><div class="co-h">😱 링크 눌렀더니 ‘404 File not found’가 떴어!</div>당황 ㄴㄴ! 거의 다 <b>파일 이름을 index.html로 안 해서</b>야. <b>해결법이 ‘안 될 때 🆘’ 탭에 단계별로 다 있어.</b> 거기로 가서 그대로 따라 하면 풀려!</div>
-        <div class="ok"><div class="co-h">🎉 링크가 열렸다면!</div>축하해 — 너는 이제 ‘배포’할 줄 아는 사람이야! 이 링크를 친구·가족한테 보내서 자랑하자.</div>
+        <div class="warn"><div class="co-h">😱 링크 눌렀더니 ‘404 File not found’가 떴어요!</div>당황 ㄴㄴ! 거의 다 <b>파일 이름을 index.html로 안 해서</b>예요. <b>해결법이 ‘안 될 때 🆘’ 탭에 단계별로 다 있어요.</b> 거기로 가서 그대로 따라 하면 풀려요!</div>
+        <div class="ok"><div class="co-h">🎉 링크가 열렸다면!</div>축하합니다 — 선생님은 이제 ‘배포’할 줄 아는 사람이에요! 이 방법으로 수업 자료·학생 작품도 얼마든지 올릴 수 있어요.</div>
       </div>
       <div class="navrow"><button class="navbtn prev" onclick="step(-1)">← 이전</button><span class="navpos">6 / 6</span><button class="navbtn next" onclick="goTab('help')">혹시 안 되면 →</button></div>
     </div>
@@ -517,35 +561,62 @@ footer .credit{font-weight:800;color:var(--ink)}
 
     <!-- 안내 -->
     <div class="block" style="background:linear-gradient(135deg,#eef0fe,#f4f1ff);border-color:#cdd3fb">
-      <div class="block-title" style="color:var(--indigo-dk)">🆘 막혔을 때 — 선생님 부르기 전에!</div>
-      <p style="font-size:.93rem;color:#34384f">선생님은 30명을 한꺼번에 못 도와줘. 그리고 <b>너는 이미 AI로 코드를 만든 사람</b>이잖아? 문제 해결도 아래 순서로 하면 거의 다 스스로 풀 수 있어 💪</p>
+      <div class="block-title" style="color:var(--indigo-dk)">🆘 막혔을 때 — 이 순서로 확인하세요!</div>
+      <p style="font-size:.93rem;color:#34384f">대부분의 문제는 아래에서 <b>스스로 해결</b>할 수 있어요. 순서대로 확인해 보세요 💪</p>
       <ul class="sub-steps" style="margin-top:8px">
         <li>아래 <b>‘404 집중 해결’</b>과 <b>‘자주 나는 오류’</b>를 먼저 읽고 그대로 따라 하기.</li>
-        <li>그래도 안 되면 <b>맨 아래 AI에게 묻는 문장</b>을 복사해서 Gemini·ChatGPT에 붙여넣고 해결하기.</li>
+        <li>예제 말고 <b>직접 만든 코드</b>를 올리고 싶으면 <b>‘내 코드를 올리고 싶다면’</b> 참고.</li>
+        <li>그래도 안 되면 <b>맨 아래 AI에게 묻는 문장</b>을 복사해 Gemini·ChatGPT·Claude에 붙여넣고 해결하기.</li>
         <li>스스로 <b>체크리스트</b>로 점검하기.</li>
-        <li>이걸 다 했는데도 안 되면 → 그때 선생님!</li>
       </ul>
+    </div>
+
+    <!-- 내 코드를 올리고 싶다면 (예전 '코드 확인' 내용을 여기로 이동) -->
+    <div class="block">
+      <div class="block-title">🎨 예제 말고 <span style="color:var(--indigo-dk)">내가 직접 만든 코드</span>를 올리고 싶다면?</div>
+      <p style="font-size:.93rem;color:#34384f">예제로 배포에 성공했다면, 이제 직접 만든 코드(예: <b>Gemini·ChatGPT 등 AI로 만든 것</b>)를 <b>똑같은 방법</b>으로 올리면 돼요. 그런데 올렸는데 <b>화면이 이상하거나, 코드 글자만 보이거나, 안 열린다면</b> 그 코드가 ‘HTML 한 파일’이 아닐 수 있어요.</p>
+      <p style="font-size:.93rem;color:#34384f">GitHub Pages는 <b>HTML 파일</b>만 웹페이지로 보여줘요. 그래서 <b>코드 맨 윗줄</b>을 먼저 확인해 보세요. (그림/화면만 보이고 코드가 안 보이면 ‘코드(Code)’ 보기로 바꿔서 확인!)</p>
+      <div class="gb">
+        <div class="row good">
+          <div class="lab">✅ 이렇게 시작하면 OK!</div>
+          <div class="codes"><span class="codebit">&lt;!DOCTYPE html&gt;</span><span class="codebit">&lt;html lang="ko"&gt;</span></div>
+        </div>
+        <div class="row bad">
+          <div class="lab">❌ 이렇게 시작하면 아직 HTML이 아니에요</div>
+          <div class="codes"><span class="codebit">import React from "react"</span><span class="codebit">function App() { ... }</span><span class="codebit">def main():  (← 파이썬)</span><span class="codebit">```jsx  /  ```python</span></div>
+        </div>
+      </div>
+      <div class="warn">
+        <div class="co-h">⚠️ HTML이 아니거나 파일이 여러 개면?</div>
+        아래 <b>마법의 문장</b>을 복사해서 AI(Gemini·ChatGPT 등) 채팅에 그대로 붙여넣어 주세요. 그러면 <b>HTML 한 파일</b>로 다시 만들어 줄 거예요. 그 코드로 <b>위 4단계를 똑같이</b> 하면 링크가 열려요!
+      </div>
+      <div class="prompt">
+        <span class="pl">AI에 붙여넣기</span>
+        <button class="copy" data-copy="fixPrompt"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>복사</button>
+        <code id="fixPrompt">지금 만든 걸 HTML 파일 하나로 다시 만들어줘. HTML, CSS, JavaScript를 전부 한 파일에 넣고, 맨 윗줄은 &lt;!DOCTYPE html&gt; 으로 시작하게 해줘. 다른 파일 없이 이 파일 하나만으로 작동해야 해.</code>
+      </div>
+      <div class="tip" style="margin-bottom:0"><div class="co-h">🧩 파일이 <code>index.html</code> + <code>style.css</code>처럼 나뉘어 나왔다면?</div>그대로도 작동은 하지만, 위 <b>마법의 문장으로 “한 파일로 합쳐줘”</b> 하면 훨씬 올리기 쉬워져요. (한 파일이면 4단계 ‘복붙 방식’이 가능!)</div>
     </div>
 
     <!-- 404 집중 해결 -->
     <div class="block">
       <div class="fof">
-        <div class="fh">😱 ‘404 — File not found’가 떴어!</div>
-        <div class="fsub"><b>99%는 파일 이름이 <code>index.html</code>이 아니라서</b>야. 침착하게 아래 둘 중 하나로 해결하면 돼.</div>
+        <div class="fh">😱 ‘404 — File not found’가 떴어요!</div>
+        <div class="fsub"><b>99%는 파일 이름이 <code>index.html</code>이 아니라서</b>예요. 침착하게 아래 둘 중 하나로 해결하면 돼요.</div>
 
         <div class="fix">
           <div class="fl">빠른 해결 <span class="badge">제일 빠름</span></div>
-          <div style="font-size:.9rem;color:#34384f;margin-bottom:6px"><b>주소 끝에 진짜 파일 이름을 붙이기</b> — 이름을 안 바꿔도 바로 들어가져!</div>
+          <div style="font-size:.9rem;color:#34384f;margin-bottom:6px"><b>주소 끝에 진짜 파일 이름을 붙이기</b> — 이름을 안 바꿔도 바로 들어가져요!</div>
           <ul class="sub-steps">
             <li>저장소 첫 화면에서 내가 올린 파일의 <b>정확한 이름</b>을 확인. <span style="color:var(--red-dk);font-weight:700">대소문자까지 똑같이!</span> (예: <code>game.html</code>)</li>
             <li>내 링크 끝에 그 이름을 붙여서 접속 → <code>https://(아이디).github.io/(저장소이름)/game.html</code></li>
-            <li>열리면 성공! (파일 여러 개면 각각 이름 붙여서 들어가면 돼)</li>
+            <li>열리면 성공! (파일 여러 개면 각각 이름 붙여서 들어가면 돼요)</li>
           </ul>
         </div>
 
         <div class="fix">
           <div class="fl">확실한 해결 <span class="badge alt">한 번에 끝</span></div>
-          <div style="font-size:.9rem;color:#34384f;margin-bottom:6px"><b>이름을 <code>index.html</code>로 바꿔서 다시 올리기</b> — 그럼 주소 끝에 안 붙여도 열려.</div>
+          <div style="font-size:.9rem;color:#34384f;margin-bottom:6px"><b>이름을 <code>index.html</code>로 바꿔서 다시 올리기</b> — 그럼 주소 끝에 안 붙여도 열려요.</div>
           <ul class="sub-steps">
             <li><b>복붙 방식이었으면:</b> 저장소에서 <b>Add file → Create new file</b> → 이름 <code>index.html</code> → 코드 붙여넣기 → Commit. (이름 틀린 옛 파일은 클릭 → 휴지통🗑️ 아이콘으로 삭제)</li>
             <li><b>업로드 방식이었으면:</b> 컴퓨터에서 파일 이름을 <code>index.html</code>로 고쳐서(<b>이중 확장자 함정 주의</b> — 4단계 참고) 다시 <b>Upload files</b>.</li>
@@ -566,24 +637,24 @@ footer .credit{font-weight:800;color:var(--ink)}
     <!-- 자주 나는 오류 -->
     <div class="block mistakes">
       <div class="block-title">😵 자주 나는 오류 모음 (증상 → 원인 → 해결)</div>
-      <div class="m"><div class="mi">🔗</div><div><div class="mt">링크 누르면 404 (제일 흔함)</div><div class="md">파일 이름이 <code>index.html</code>이 아니라서. <b>주소 끝에 파일 이름을 붙이거나</b>, 이름을 <code>index.html</code>로 바꿔 다시 올리기 → 위 ‘404 집중 해결’.</div></div></div>
-      <div class="m"><div class="mi">✌️</div><div><div class="mt">이름이 <code>index.html.html</code>이 됨</div><div class="md">다운로드 파일이 이미 <code>.html</code>인데 또 <code>.html</code>을 붙여서. <b>확장자를 보이게 켜고</b> 점 <code>.html</code>이 <b>하나</b>가 되게 → 4단계 함정.</div></div></div>
-      <div class="m"><div class="mi">📄</div><div><div class="mt">화면에 코드(글자)만 잔뜩 보임</div><div class="md">이름 끝이 <code>.txt</code>가 됐거나(<code>index.html.txt</code>) HTML이 아님. 이름을 <code>.html</code>로, 코드 맨 윗줄이 <code>&lt;!DOCTYPE html&gt;</code>인지 확인 → 2·4단계.</div></div></div>
-      <div class="m"><div class="mi">🔒</div><div><div class="mt">사이트가 안 열리고 Pages도 못 켬</div><div class="md">저장소가 <b>Private</b>이라서. <b>Public</b>이어야 무료로 공개돼. Settings에서 바꾸거나 Public으로 새로 만들기 → 3단계.</div></div></div>
-      <div class="m"><div class="mi">🔌</div><div><div class="mt">링크(주소) 자체가 안 생김</div><div class="md">Pages 스위치를 안 켬. <b>Settings → Pages</b>에서 <code>main</code>/<code>(root)</code> 선택 후 Save → 5단계.</div></div></div>
-      <div class="m"><div class="mi">⏱️</div><div><div class="mt">방금 켰는데 링크가 없거나 404</div><div class="md">너무 빨리 봐서. 빌드에 <b>1~2분</b> 걸려. 기다렸다가 Pages 화면 새로고침 → 6단계.</div></div></div>
-      <div class="m"><div class="mi">📁</div><div><div class="mt">파일을 올렸는데 첫 화면에 안 보임</div><div class="md">폴더째 올려서 파일이 폴더 속에 숨음. <code>index.html</code>이 <b>저장소 첫 화면에 바로</b> 보여야 함 → 4단계.</div></div></div>
-      <div class="m"><div class="mi">🔠</div><div><div class="mt">주소에 파일명 붙였는데도 404</div><div class="md">대소문자가 달라서. <code>Game.html</code> ≠ <code>game.html</code>. 저장소에 보이는 <b>그대로</b> 똑같이 입력.</div></div></div>
-      <div class="m"><div class="mi">⚙️</div><div><div class="mt">Settings에 ‘Pages’ 메뉴가 안 보임</div><div class="md">프로필 설정을 잘못 들어감. <b>저장소 이름이 위에 보이는 화면</b>의 Settings로 → 5단계.</div></div></div>
-      <div class="m"><div class="mi">➕</div><div><div class="mt"><code>+</code>만 보이고 저장소 만들기 못 찾음</div><div class="md">화면마다 버튼이 달라서. 주소창에 <code>github.com/new</code> 입력하면 바로 만들기 화면 → 3단계.</div></div></div>
-      <div class="m"><div class="mi">🔁</div><div><div class="mt">고쳤는데 옛날 화면이 계속 보임</div><div class="md">브라우저가 옛 버전을 기억(캐시)해서. <b>강력 새로고침</b> <code>Ctrl+Shift+R</code> (맥 <code>⌘+Shift+R</code>).</div></div></div>
-      <div class="m"><div class="mi">🧩</div><div><div class="mt">코드가 HTML이 아님 (React/파이썬)</div><div class="md">맨 윗줄이 <code>&lt;!DOCTYPE html&gt;</code>이 아님. 2단계 <b>마법의 문장</b>으로 한 파일 HTML로 다시 받기.</div></div></div>
+      <div class="m"><div class="mi">🔗</div><div><div class="mt">링크 누르면 404 (제일 흔함)</div><div class="md">파일 이름이 <code>index.html</code>이 아니라서요. <b>주소 끝에 파일 이름을 붙이거나</b>, 이름을 <code>index.html</code>로 바꿔 다시 올리기 → 위 ‘404 집중 해결’.</div></div></div>
+      <div class="m"><div class="mi">✌️</div><div><div class="mt">이름이 <code>index.html.html</code>이 됨</div><div class="md">다운로드 파일이 이미 <code>.html</code>인데 또 <code>.html</code>을 붙여서요. <b>확장자를 보이게 켜고</b> 점 <code>.html</code>이 <b>하나</b>가 되게 → 4단계 함정.</div></div></div>
+      <div class="m"><div class="mi">📄</div><div><div class="mt">화면에 코드(글자)만 잔뜩 보임</div><div class="md">이름 끝이 <code>.txt</code>가 됐거나(<code>index.html.txt</code>) HTML이 아니에요. 이름을 <code>.html</code>로, 코드 맨 윗줄이 <code>&lt;!DOCTYPE html&gt;</code>인지 확인 → 4단계·‘내 코드 올리기’.</div></div></div>
+      <div class="m"><div class="mi">🔒</div><div><div class="mt">사이트가 안 열리고 Pages도 못 켬</div><div class="md">저장소가 <b>Private</b>이라서요. <b>Public</b>이어야 무료로 공개돼요. Settings에서 바꾸거나 Public으로 새로 만들기 → 3단계.</div></div></div>
+      <div class="m"><div class="mi">🔌</div><div><div class="mt">링크(주소) 자체가 안 생김</div><div class="md">Pages 스위치를 안 켰어요. <b>Settings → Pages</b>에서 <code>main</code>/<code>(root)</code> 선택 후 Save → 5단계.</div></div></div>
+      <div class="m"><div class="mi">⏱️</div><div><div class="mt">방금 켰는데 링크가 없거나 404</div><div class="md">너무 빨리 봐서요. 빌드에 <b>1~2분</b> 걸려요. 기다렸다가 Pages 화면 새로고침 → 6단계.</div></div></div>
+      <div class="m"><div class="mi">📁</div><div><div class="mt">파일을 올렸는데 첫 화면에 안 보임</div><div class="md">폴더째 올려서 파일이 폴더 속에 숨었어요. <code>index.html</code>이 <b>저장소 첫 화면에 바로</b> 보여야 함 → 4단계.</div></div></div>
+      <div class="m"><div class="mi">🔠</div><div><div class="mt">주소에 파일명 붙였는데도 404</div><div class="md">대소문자가 달라서요. <code>Game.html</code> ≠ <code>game.html</code>. 저장소에 보이는 <b>그대로</b> 똑같이 입력.</div></div></div>
+      <div class="m"><div class="mi">⚙️</div><div><div class="mt">Settings에 ‘Pages’ 메뉴가 안 보임</div><div class="md">프로필 설정을 잘못 들어갔어요. <b>저장소 이름이 위에 보이는 화면</b>의 Settings로 → 5단계.</div></div></div>
+      <div class="m"><div class="mi">➕</div><div><div class="mt"><code>+</code>만 보이고 저장소 만들기 못 찾음</div><div class="md">화면마다 버튼이 달라서요. 주소창에 <code>github.com/new</code> 입력하면 바로 만들기 화면 → 3단계.</div></div></div>
+      <div class="m"><div class="mi">🔁</div><div><div class="mt">고쳤는데 옛날 화면이 계속 보임</div><div class="md">브라우저가 옛 버전을 기억(캐시)해서요. <b>강력 새로고침</b> <code>Ctrl+Shift+R</code> (맥 <code>⌘+Shift+R</code>).</div></div></div>
+      <div class="m"><div class="mi">🧩</div><div><div class="mt">코드가 HTML이 아님 (React/파이썬)</div><div class="md">맨 윗줄이 <code>&lt;!DOCTYPE html&gt;</code>이 아니에요. 위 ‘내 코드를 올리고 싶다면’의 <b>마법의 문장</b>으로 한 파일 HTML로 다시 받기.</div></div></div>
     </div>
 
     <!-- AI에게 묻기 -->
     <div class="block">
       <div class="block-title">🤖 그래도 안 되면 — AI한테 직접 물어보기!</div>
-      <p style="font-size:.93rem;color:#34384f">위에도 답이 없으면, <b>Gemini·ChatGPT·Claude</b> 아무거나 열고 아래 문장을 <b>복사</b>해서 붙여넣어. 그리고 <code>___</code> 부분을 네 상황에 맞게 채우면 돼. AI가 단계별로 알려줄 거야!</p>
+      <p style="font-size:.93rem;color:#34384f">위에도 답이 없으면, <b>Gemini·ChatGPT·Claude</b> 아무거나 열고 아래 문장을 <b>복사</b>해서 붙여넣으세요. 그리고 <code>___</code> 부분을 상황에 맞게 채우면 돼요. AI가 단계별로 알려줄 거예요!</p>
       <div class="prompt">
         <span class="pl">AI에게 붙여넣기 (___ 채우기)</span>
         <button class="copy" data-copy="aiPrompt"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>복사</button>
@@ -597,9 +668,9 @@ footer .credit{font-weight:800;color:var(--ink)}
 - 내가 접속한 주소: https://___.github.io/___/
 - 코드 맨 윗줄: ___  (예: &lt;!DOCTYPE html&gt;)
 
-초등학생도 이해할 수 있게, 무엇이 문제이고 어떻게 고치는지 순서대로 알려줘.</code>
+차근차근, 무엇이 문제이고 어떻게 고치는지 순서대로 알려줘.</code>
       </div>
-      <div class="tip" style="margin-bottom:0"><div class="co-h">💡 잘 물어보는 꿀팁</div>“안 돼요”만 쓰면 AI도 몰라. <b>화면에 뜬 에러 글자(404 등)와 내 주소를 그대로</b> 알려줄수록 정확한 답이 나와!</div>
+      <div class="tip" style="margin-bottom:0"><div class="co-h">💡 잘 물어보는 꿀팁</div>“안 돼요”만 쓰면 AI도 몰라요. <b>화면에 뜬 에러 글자(404 등)와 내 주소를 그대로</b> 알려줄수록 정확한 답이 나와요!</div>
     </div>
 
     <!-- 체크리스트 -->
@@ -615,13 +686,13 @@ footer .credit{font-weight:800;color:var(--ink)}
         <li><span class="box">✓</span><span class="tx">Save 후 <b>1~2분 기다렸다가</b> 새로고침해서 링크를 확인했다</span></li>
         <li><span class="box">✓</span><span class="tx">주소의 <b>대소문자</b>를 저장소와 똑같이 입력했다</span></li>
       </ul>
-      <div class="lastline">위가 전부 ✅인데도 안 되면 → <b>‘AI한테 직접 물어보기’ 문장</b>을 복사해서 Gemini·ChatGPT에 붙여넣고 해결하자. 그래도 안 풀리면 그때 선생님 🙆</div>
+      <div class="lastline">위가 전부 ✅인데도 안 되면 → <b>‘AI한테 직접 물어보기’ 문장</b>을 복사해서 Gemini·ChatGPT에 붙여넣고 해결해 보세요.</div>
     </div>
 
     <div class="block">
       <div class="celebrate">
-        <div class="big disp">🌟 끝까지 해낸 너, 멋지다!</div>
-        내가 만든 작품을 전 세계가 볼 수 있어. 링크를 자랑해보자.
+        <div class="big disp">🌟 끝까지 해내신 선생님, 멋져요!</div>
+        이제 수업 자료도, 학생 작품도 인터넷에 올려 링크로 나눌 수 있어요.
       </div>
     </div>
 
@@ -657,25 +728,54 @@ footer .credit{font-weight:800;color:var(--ink)}
   }
   document.querySelectorAll('.pill').forEach(function(pl){ pl.addEventListener('click',function(){ goTab(pl.dataset.tab); }); });
 
-  // 복사
+  function showToast(msg){
+    var t=document.getElementById('toast'); t.textContent=msg||'복사했어요 ✓'; t.classList.add('show');
+    setTimeout(function(){t.classList.remove('show'); t.textContent='복사했어요 ✓';},1600);
+  }
+  function fallback(t){var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);}
+
+  // 일반 복사(마법의 문장 등)
   document.querySelectorAll('.copy').forEach(function(btn){
     btn.addEventListener('click',function(){
       var txt=document.getElementById(btn.dataset.copy).innerText;
       function done(){
-        var t=document.getElementById('toast'); t.classList.add('show'); setTimeout(function(){t.classList.remove('show');},1500);
+        showToast('복사했어요 ✓');
         btn.classList.add('done'); var o=btn.innerHTML; btn.innerHTML='복사됨 ✓'; setTimeout(function(){btn.classList.remove('done');btn.innerHTML=o;},1500);
       }
       if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(function(){fallback(txt);done();});}
       else{fallback(txt);done();}
     });
   });
-  function fallback(t){var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);}
+
+  // 예제 코드 복사(방법 A)
+  function copyExample(btn){
+    var txt=document.getElementById('exampleCode').innerText;
+    function done(){
+      showToast('코드를 복사했어요 ✓');
+      btn.classList.add('done'); var o=btn.innerHTML; btn.innerHTML='복사됨 ✓';
+      setTimeout(function(){btn.classList.remove('done'); btn.innerHTML=o;},1600);
+    }
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(function(){fallback(txt);done();});}
+    else{fallback(txt);done();}
+  }
+
+  // 예제 코드 다운로드(방법 B) — index.html 로 저장
+  function downloadExample(){
+    var code=document.getElementById('exampleCode').innerText;
+    var blob=new Blob([code],{type:'text/html;charset=utf-8'});
+    var url=URL.createObjectURL(blob);
+    var a=document.createElement('a');
+    a.href=url; a.download='index.html';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){URL.revokeObjectURL(url);},1500);
+    showToast('index.html 파일을 저장했어요 ✓');
+  }
 
   // 체크리스트
   document.querySelectorAll('#check li').forEach(function(li){ li.addEventListener('click',function(){ li.classList.toggle('on'); }); });
 
   goTab('start');
 </script>
-<footer id="app-credit" style="width:100%;box-sizing:border-box;margin:2.5rem 0 0;padding:14px 12px;text-align:center;font-size:12.5px;line-height:1.6;color:#8a8f98;font-family:system-ui,-apple-system,'Segoe UI','Malgun Gothic',sans-serif;border-top:1px solid rgba(128,128,128,.25);">© 2026 조승재(과학이조선생) · 해누리중학교 · All rights reserved<br><span style="font-size:11px;opacity:.85;">최종 업데이트: 2026-06-18</span></footer>
+<footer id="app-credit" style="width:100%;box-sizing:border-box;margin:2.5rem 0 0;padding:14px 12px;text-align:center;font-size:12.5px;line-height:1.6;color:#8a8f98;font-family:system-ui,-apple-system,'Segoe UI','Malgun Gothic',sans-serif;border-top:1px solid rgba(128,128,128,.25);">© 2026 조승재(과학이조선생) · 해누리중학교 · All rights reserved<br><span style="font-size:11px;opacity:.85;">최종 업데이트: 2026-09-20</span></footer>
 </body>
 </html>
