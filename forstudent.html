@@ -97,6 +97,7 @@ main{max-width:720px;margin:0 auto;padding:20px 14px 18px}
 .chip.set{background:#fff;color:var(--ink);border:1px solid var(--line)}
 .mock .a{color:var(--faint);font-weight:800}
 
+.shot{margin:12px 0}.shot img{display:block;width:100%;max-width:520px;height:auto;border:1px solid var(--line);border-radius:12px;background:#fff}.shot figcaption{margin-top:6px;font-size:.85rem;color:var(--faint)}
 .ok,.warn,.tip{border-radius:14px;padding:14px 16px;margin:13px 0;font-size:.93rem}
 .ok{background:var(--green-bg);border:1px solid #bce8d3}
 .ok b{color:var(--green-dk)}
@@ -311,6 +312,7 @@ footer .credit{font-weight:800;color:var(--ink)}
       <div class="step-body">
         <p><b>GitHub</b>는 내 파일을 올려두고 인터넷에 공개할 수 있는 곳이에요. <b>무료</b>로 가입하면 됩니다!</p>
         <div class="mock"><span class="chip set">github.com 접속</span><span class="a">→</span><span class="chip gray">Sign up</span><span class="a">→</span><span class="chip gh">가입 완료</span></div>
+        <figure class="shot"><img src="shots/github-signup.png" alt="GitHub 가입 화면: 이메일, 사용자 이름, 국가 선택 후 Create account" loading="lazy"><figcaption>가입 화면 — 이메일 · 사용자 이름(초록 ✔ 이면 사용 가능) · 국가(Korea, South)를 채우고 <b>Create account</b></figcaption></figure>
         <ul class="sub-steps">
           <li>주소창에 <code>github.com</code> 을 입력해 접속 → 오른쪽 위 <b>Sign up</b> 클릭.</li>
           <li><b>이메일</b> 주소 입력 → Continue.</li>
@@ -322,6 +324,7 @@ footer .credit{font-weight:800;color:var(--ink)}
         <div class="warn"><div class="co-h">⚠️ 사용자 이름(아이디)은 신중하게!</div>가입할 때 정한 <b>사용자 이름</b>이 곧 내 사이트 주소가 돼요. 예) 아이디가 <code>hong-science</code>면 → 내 주소는 <code>hong-science.github.io/...</code> 로 시작해요. 기억하기 쉬운 걸로 정하고 <b>잘 적어두세요</b> (6단계에서 씁니다!).</div>
         <div class="tip"><div class="co-h">📶 연수장 꿀팁</div>같은 와이파이로 여러 분이 한꺼번에 가입하면 막힐 수 있어요. 그러면 <b>휴대폰 핫스팟</b>으로 가입해 보세요.</div>
         <div class="ok"><div class="co-h">✅ 완료!</div>로그인된 GitHub 화면이 보이면 가입 끝!</div>
+        <figure class="shot"><img src="shots/github-dashboard.png" alt="GitHub 가입 완료 후 Dashboard 화면" loading="lazy" style="max-width:100%"><figcaption>가입 완료 화면 — 이런 Dashboard 가 보이면 성공! 가운데 «Join GitHub Education!» 카드는 오른쪽 위 ✕ 로 닫아도 돼요.</figcaption></figure>
       </div>
       <div class="navrow"><button class="navbtn prev" onclick="step(-1)">← 처음</button><span class="navpos">1 / 6</span><button class="navbtn next" onclick="step(1)">다음 →</button></div>
     </div>
