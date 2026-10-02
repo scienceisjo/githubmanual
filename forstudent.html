@@ -280,6 +280,41 @@ footer.maker .credit{color:var(--ink);font-weight:600}
 .um-out .empty{font-size:14px;color:var(--muted)}
 .fixd{font-size:15px;color:var(--ink80);margin-bottom:6px}
 .rules{margin-top:22px}
+.lead{font-size:clamp(18px,2.3vw,21px);line-height:1.45;color:var(--ink80);margin:-6px 0 22px;letter-spacing:-.015em}
+.lead code{font-size:.8em}
+.h5{font-size:17px;font-weight:600;margin:26px 0 4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.h5 .mth{font-size:12px;font-weight:600;color:#fff;background:var(--ink);border-radius:980px;padding:3px 10px}
+.anat{font-family:var(--mono);font-size:clamp(14px,2.4vw,19px);background:var(--canvas);border-radius:14px;padding:16px 18px;word-break:break-all;line-height:1.7}
+.anat .a0{color:var(--faint)}
+.anat .a1,.anat .a2,.anat .a3{font-weight:600;padding:2px 6px;border-radius:6px;color:#fff}
+.anat .a1{background:var(--blue)} .anat .a2{background:var(--green)} .anat .a3{background:var(--mark)}
+.anat-key{display:flex;flex-direction:column;gap:6px;margin:14px 0 4px;font-size:15px;color:var(--ink80)}
+.anat-key div{display:flex;gap:10px;align-items:flex-start}
+.anat-key i{flex-shrink:0;width:14px;height:14px;border-radius:4px;margin-top:5px}
+.anat-key .k1{background:var(--blue)} .anat-key .k2{background:var(--green)} .anat-key .k3{background:var(--mark)}
+.fold{background:var(--parch);border-radius:14px;margin:14px 0}
+.fold summary{cursor:pointer;list-style:none;padding:15px 18px;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.fold summary::-webkit-details-marker{display:none}
+.fold summary::after{content:"";flex-shrink:0;width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .2s;margin:-4px 4px 0 0}
+.fold[open] summary::after{transform:rotate(-135deg);margin-top:4px}
+.fold summary:focus-visible{outline:2px solid var(--blue-focus);outline-offset:2px;border-radius:14px}
+.fold .q{display:inline-block;font-size:12px;font-weight:600;color:var(--blue);background:var(--blue-bg);border-radius:980px;padding:2px 9px;margin-right:8px;vertical-align:1px}
+.fold-body{padding:0 18px 14px;font-size:15px;color:var(--ink80)}
+.fold-body .fi{padding:10px 0;border-top:1px solid rgba(0,0,0,.07)}
+.fold-body .fi b:first-child{color:var(--ink)}
+.fold-body .fi.last{color:var(--ink)}
+.why .soft{color:#a1a1a6}
+.why a{color:#2997ff;text-decoration:none;word-break:break-all}
+.why a:hover{text-decoration:underline}
+.why .ln-ok{color:#30d158;font-weight:700} .why .ln-bad{color:#ff6961;font-weight:700}
+.fd{display:flex;flex-direction:column;gap:8px;margin:16px 0}
+.fd-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.fd-url{font-family:var(--mono);font-size:14px;background:rgba(255,255,255,.1);border-radius:980px;padding:6px 14px;color:#f5f5f7}
+.fd-url b{color:#ffd60a}
+.fd-ar{color:#86868b}
+.fd-res{font-size:15px}
+.fd-res.yes{color:#f5f5f7} .fd-res.no{color:#ff6961}
+.why .ex b.lead-b{color:#fff}
 .shot.wide .legend,.shot.wide figcaption{max-width:788px;margin-left:auto;margin-right:auto}
 </style>
 </head>
@@ -312,6 +347,17 @@ footer.maker .credit{color:var(--ink);font-weight:600}
       <h1 class="disp">GitHub으로<br>인터넷에 올리기.</h1>
       <p>준비된 예제 코드를 GitHub Pages에 올리면, 누구나 열어 볼 수 있는 <b>내 링크</b>가 생겨요. 두 번 연습하면 내가 만든 파일도 혼자 올릴 수 있어요.</p>
       <div class="note">위쪽 탭이나 아래 ‘다음’ 버튼으로 한 단계씩 따라오세요. 사진 속 <b style="color:var(--mark)">빨간 네모와 번호</b>가 누를 곳이고, 사진 아래에 같은 번호로 설명이 있어요. 사진을 누르면 크게 보여요.</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">완성하면 이런 주소가 생겨요</div>
+      <div class="anat"><span class="a0">https://</span><span class="a1">hnrscience</span><span class="a0">.github.io/</span><span class="a2">my-first-web</span><span class="a0">/</span><span class="a3">hello.html</span></div>
+      <div class="anat-key">
+        <div><i class="k1"></i><span><b>아이디</b> — 1단계 가입 때 정해요</span></div>
+        <div><i class="k2"></i><span><b>저장소 이름</b> — 2단계에서 정해요</span></div>
+        <div><i class="k3"></i><span><b>파일 이름</b> — 3·6단계에서 올린 파일. <code>index.html</code> 이면 생략할 수 있어요</span></div>
+      </div>
+      <p class="bp">단계마다 이 주소를 한 조각씩 만들어 가요. 그리고 4단계(Pages)에서 이 주소를 실제로 <b>켜요.</b></p>
     </div>
 
     <div class="block">
@@ -373,9 +419,9 @@ footer.maker .credit{color:var(--ink);font-weight:600}
   <section class="panel" id="panel-s1">
     <div class="step">
       <div class="step-head"><div class="num">1</div><h2 class="disp">GitHub 가입하기</h2></div>
+        <p class="lead">내 이름으로 된 GitHub 공간을 만드는 단계예요. 여기서 정한 <b>아이디</b>가 주소 맨 앞 <code>아이디.github.io</code> 가 됩니다.</p>
       <div class="step-body">
-        <p><b>GitHub</b>는 내 파일을 올려 두고 인터넷에 공개할 수 있는 곳이에요. 먼저 계정을 만듭니다.</p>
-        <ul class="sub-steps">
+                <ul class="sub-steps">
           <li>주소창에 <code>github.com</code> 을 입력해 접속 → 오른쪽 위 <b>Sign up</b> 클릭.</li>
           <li><b>개인 구글 아이디가 있다면 구글로 가입하세요.</b> <b>Continue with Google</b> 을 누르고 내 구글 계정을 고르면 이메일이 자동으로 채워져요. 다른 계정으로 하려면 <b>Use a different Google account</b>.</li>
           <li>아래 사진처럼 <b>Username</b>·<b>Country/Region</b> 을 확인하고 <b>Create account</b>.</li>
@@ -402,19 +448,42 @@ footer.maker .credit{color:var(--ink);font-weight:600}
   <section class="panel" id="panel-s2">
     <div class="step">
       <div class="step-head"><div class="num">2</div><h2 class="disp">새 저장소(Repository) 만들기</h2></div>
+        <p class="lead">파일을 넣어 둘 <b>방(저장소)</b>을 만드는 단계예요. 저장소 이름이 주소 가운데 <code>/저장소이름/</code> 이 됩니다. 보통 <b>사이트(작품) 하나 = 저장소 하나</b>로 만들어요.</p>
       <div class="step-body">
-        <p>‘저장소’는 내 파일을 넣어 두는 <b>방</b>이에요. 먼저 빈 방을 하나 만들어요.</p>
+        <div class="h3">① ‘새 저장소’ 화면 열기</div>
+        <p>방법이 세 가지예요. <b>편한 것 하나만</b> 하면 돼요.</p>
+        <div class="h5"><span class="mth">방법 1</span>오른쪽 위 <b>+</b> → <b>New repository</b></div>
         <figure class="shot wide" data-marks='[
           {"x":82.48,"y":2.29,"w":3.37,"h":4.81,"t":"오른쪽 위 + 누르기","d":"화면 오른쪽 위의 <b>+</b> 를 눌러요.","s":"left"},
           {"x":73.65,"y":13.5,"w":11.78,"h":4.58,"t":"New repository","d":"펼쳐진 메뉴에서 <b>New repository</b> 를 눌러요. (맨 위 New issue 가 아니에요!)","s":"left","pulse":1}
         ]'><img src="shots/new-repo-menu.png" alt="오른쪽 위 + 메뉴를 펼친 화면, New repository 항목" loading="lazy"></figure>
-        <div class="tip"><div class="co-h">+ 가 안 보이거나 헷갈리면</div>주소창에 <code>github.com/new</code> 를 그대로 입력하세요. 버튼을 찾지 않아도 아래 <b>Create a new repository</b> 화면이 바로 열려요. 1단계 마지막 사진의 초록 <b>Create repository</b> 를 눌러도 같아요.</div>
+        <div class="h5"><span class="mth">방법 2</span>왼쪽 위 <b>☰</b> → <b>Repositories</b> → <b>New repository</b></div>
+        <figure class="shot wide" data-marks='[
+          {"x":0.79,"y":2.09,"w":2.22,"h":4.65,"t":"☰ 누르고 → Repositories","d":"왼쪽 위 <b>☰</b>(줄 세 개)를 누르면 메뉴가 열려요. 메뉴에서 <b>Repositories</b> 를 누르세요.","s":"bottom"},
+          {"x":5.83,"y":2.79,"w":5.61,"h":3.49,"t":"이 화면이면 맞아요","d":"왼쪽 위에 <b>Repositories</b> 라고 보이면 내 저장소 목록 화면이에요. (아직 저장소가 없어서 <i>No repositories</i> 라고 나와요.)","s":"right"},
+          {"x":87.13,"y":11.4,"w":7.73,"h":4.88,"t":"New repository","d":"오른쪽 위 초록 <b>New repository</b> 를 눌러요. 나중에 내가 만든 저장소들을 찾을 때도 이 화면으로 오면 돼요.","s":"left","pulse":1}
+        ]'><img src="shots/repos-page.png" alt="☰ 메뉴에서 Repositories 로 들어간 화면, 오른쪽 위 New repository 버튼" loading="lazy"></figure>
+        <div class="h5"><span class="mth">방법 3</span>주소창에 바로 입력</div>
+        <div class="tip">주소창에 <code>github.com/new</code> 를 그대로 입력하세요. 버튼을 찾지 않아도 아래 <b>Create a new repository</b> 화면이 바로 열려요. (1단계 마지막 사진의 초록 <b>Create repository</b> 를 눌러도 같아요.)</div>
+
+        <div class="h3">② 이름 정하고 만들기</div>
 
         <figure class="shot" style="max-width:640px" data-marks='[
           {"x":27.91,"y":22.42,"w":61.81,"h":4.4,"t":"영어 이름 (띄어쓰기·한글 X)","d":"<b>Repository name</b> 에 영어로 이름을 적어요. 예) <code>my-first-web</code>. 띄어쓰기와 한글은 안 돼요. 아래에 초록 ✔ <i>is available</i> 이 뜨면 쓸 수 있는 이름이에요.","s":"top","al":"r"},
           {"x":74.91,"y":55.57,"w":12.85,"h":4.68,"t":"Public 확인","d":"<b>Choose visibility</b> 가 <b>Public</b> 인지 확인해요. <b>Private</b> 이면 눌러서 Public 으로 바꿔 주세요. (Private 저장소는 Pages 를 켤 수 없어요.)","s":"left"},
-          {"x":73.81,"y":92.98,"w":15.91,"h":4.4,"t":"마지막에 클릭","d":"<b>Description</b>, <b>Add README</b>, <b>.gitignore</b>, <b>license</b> 는 건드리지 말고 맨 아래 초록 <b>Create repository</b> 를 눌러요.","s":"left","pulse":1}
+          {"x":73.81,"y":92.98,"w":15.91,"h":4.4,"t":"마지막에 클릭","d":"<b>Description</b>, <b>Add README</b>, <b>.gitignore</b>, <b>license</b> 는 건드리지 말고 맨 아래 초록 <b>Create repository</b> 를 눌러요. 왜 안 건드리는지는 바로 아래 접힌 칸에 있어요.","s":"left","pulse":1}
         ]'><img src="shots/create-repo-form.png" alt="Create a new repository 화면: 이름 my-first-web, Public, Create repository" loading="lazy"></figure>
+        <details class="fold">
+          <summary><span><span class="q">궁금하면 열기</span>Description · README · .gitignore · license 는 뭔가요? 왜 안 건드려요?</span></summary>
+          <div class="fold-body">
+            <div class="fi"><b>Owner</b> — 저장소 주인. 내 아이디가 자동으로 들어가 있어요.</div>
+            <div class="fi"><b>Description</b> — 저장소 한 줄 소개예요. 비워도 되고, 나중에 저장소 첫 화면 오른쪽 <b>About</b> 옆 톱니바퀴에서 언제든 적을 수 있어요.</div>
+            <div class="fi"><b>Add README</b> — 저장소 설명서 파일(<code>README.md</code>)을 자동으로 만들어 줘요. 켜면 저장소가 빈 채로 시작하지 않아서, 3단계에서 쓰는 <b>Quick setup</b> 화면(<i>creating a new file</i> 링크)이 안 나오고 사진과 화면이 달라져요. 그래서 끄고(Off) 시작해요. 켰더라도 고장은 아니에요 — 3단계에서 <b>Add file → Create new file</b> 로 똑같이 하면 돼요.</div>
+            <div class="fi"><b>Add .gitignore</b> — 프로그래머가 Git 명령어로 컴퓨터 폴더를 통째로 올릴 때 “이 파일들은 빼고 올려” 하고 적어 두는 목록이에요. 웹 화면에서 파일을 직접 올리는 우리 방식에는 쓸 일이 없어요.</div>
+            <div class="fi"><b>Add license</b> — 다른 사람이 내 코드를 가져다 써도 되는지 정하는 이용 규칙(MIT 등)이에요. 안 고르면 기본 저작권이 적용돼서, 공개 저장소라 누구나 <b>볼 수는 있지만</b> 마음대로 가져다 쓸 권리는 없어요. 연습용엔 필요 없고, 필요해지면 나중에 추가할 수 있어요.</div>
+            <div class="fi last">결론: 오늘은 <b>이름</b>과 <b>Public</b> 두 가지만 확인하면 충분해요.</div>
+          </div>
+        </details>
         <div class="warn"><div class="co-h">Create repository 버튼이 안 눌려요</div>거의 다 <b>Repository name 을 안 적었거나</b>, 이름에 띄어쓰기·한글이 들어가서예요. 영어 이름을 적고 초록 ✔ 가 뜨는지 보세요.</div>
         <div class="tip"><div class="co-h">알아두기</div>여기서 정한 <b>저장소 이름</b>도 내 주소에 들어가요 → <code>(아이디).github.io/<b>저장소이름</b>/</code></div>
       </div>
@@ -426,6 +495,7 @@ footer.maker .credit{color:var(--ink);font-weight:600}
   <section class="panel" id="panel-s3">
     <div class="step">
       <div class="step-head"><div class="num">3</div><h2 class="disp">첫 파일 만들기 <span class="tag">creating a new file</span></h2></div>
+        <p class="lead">만든 방에 첫 웹페이지 파일을 넣는 단계예요. 이름을 꼭 <code>index.html</code> 로 하는 이유는 이 단계 맨 아래에 정리했어요.</p>
       <div class="step-body">
         <p>첫 실습은 GitHub 안에서 <b>새 파일을 만들고 코드를 붙여넣는</b> 방법이에요. 파일 이름을 내가 직접 타이핑하니까 실수가 거의 없어요.</p>
 
@@ -471,7 +541,7 @@ footer.maker .credit{color:var(--ink);font-weight:600}
         </div>
 
         <div class="h3">② creating a new file 누르기</div>
-        <p>저장소를 막 만들면 아래처럼 <b>Quick setup</b> 화면이 나와요. 파란 상자 안의 작은 파란 글씨를 찾으세요.</p>
+        <p>저장소를 막 만들면 아래처럼 <b>Quick setup</b>(빠른 시작) 화면이 나와요. 빈 저장소에 처음 들어왔을 때만 보이는 안내 화면이에요. 파란 상자 안의 작은 파란 글씨를 찾으세요. 그 아래 회색 상자의 명령어들(<i>…on the command line</i>)은 프로그래머가 쓰는 Git 명령어라서 <b>무시해도 돼요.</b></p>
         <figure class="shot wide" data-marks='[
           {"x":25.62,"y":51.22,"w":5.9,"h":2.68,"t":"creating a new file 클릭","d":"파란 <b>Quick setup</b> 상자 맨 아래 줄의 <b>creating a new file</b> 링크를 눌러요. 글씨가 작으니 사진을 눌러 크게 보세요.","s":"bottom","pulse":1}
         ]'><img src="shots/empty-repo-quicksetup.png" alt="빈 저장소 Quick setup 화면, creating a new file 링크" loading="lazy"></figure>
@@ -479,7 +549,7 @@ footer.maker .credit{color:var(--ink);font-weight:600}
 
         <div class="h3">③ 이름 적고, 붙여넣고, Commit</div>
         <figure class="shot wide" data-marks='[
-          {"x":8.57,"y":9.2,"w":12.27,"h":4.83,"t":"index.html 입력","d":"맨 위 이름 칸에 <code>index.html</code> 을 정확히 입력해요. 전부 소문자, 점은 하나. <b>여기가 핵심이에요.</b>","s":"bottom"},
+          {"x":8.57,"y":9.2,"w":12.27,"h":4.83,"t":"index.html 입력","d":"맨 위 이름 칸에 <code>index.html</code> 을 정확히 입력해요. 전부 소문자, 점은 하나. <b>여기가 핵심이에요.</b> (이유는 이 단계 맨 아래)","s":"bottom"},
           {"x":4.76,"y":23.91,"w":33.32,"h":63.68,"t":"코드 붙여넣기 (Ctrl+V)","d":"아래 큰 칸을 한 번 클릭하고 <code>Ctrl</code> + <code>V</code> 로 붙여넣어요. 1번 줄이 <code>&amp;lt;!DOCTYPE html&amp;gt;</code> 이고 22번 줄까지 있으면 잘 붙은 거예요.","s":"right"},
           {"x":89.95,"y":9.2,"w":9.52,"h":4.83,"t":"Commit changes...","d":"오른쪽 위 초록 <b>Commit changes...</b> 를 눌러요.","s":"bottom","al":"r","pulse":1}
         ]'><img src="shots/new-file-editor.png" alt="새 파일 편집 화면: 파일 이름 index.html, 코드 붙여넣기, Commit changes 버튼" loading="lazy"></figure>
@@ -494,6 +564,19 @@ footer.maker .credit{color:var(--ink);font-weight:600}
           {"x":10.81,"y":43.8,"w":6.96,"h":4.06,"t":"index.html 이 보이면 성공","d":"파일 목록에 <b>index.html</b> 이 보이면 성공이에요.","s":"right"},
           {"x":56.65,"y":9.5,"w":5.38,"h":3.71,"t":"다음 단계: Settings","d":"다음 단계에서 누를 <b>Settings</b> 탭이에요. 위치만 봐 두세요.","s":"bottom"}
         ]'><img src="shots/repo-after-commit.png" alt="index.html 이 올라간 저장소 첫 화면" loading="lazy"></figure>
+        <div class="h3">⑤ 왜 꼭 index.html 일까요?</div>
+        <div class="why">
+          <p>주소창에 <code>www.naver.com</code> 처럼 <b>파일 이름 없이</b> 쳐도 페이지가 열리죠? 웹사이트는 주소가 <b>폴더(<code>/</code>)에서 끝나면</b>, 그 폴더 안에서 <b>미리 약속된 대표 파일</b>을 알아서 찾아 보여 줘요. GitHub Pages 에서 그 대표 파일의 이름이 <code>index.html</code> 이에요. <span class="soft">(<i>index</i> 는 ‘목차’라는 뜻 — 폴더의 첫 화면 역할을 한다는 의미예요.)</span></p>
+          <div class="fd">
+            <div class="fd-row"><span class="fd-url">…/my-first-web<b>/</b></span><span class="fd-ar">→</span><span class="fd-res yes">📄 <b>index.html</b> 이 자동으로 열려요</span></div>
+            <div class="fd-row"><span class="fd-url">…/my-first-web/<b>hello.html</b></span><span class="fd-ar">→</span><span class="fd-res yes">📄 <b>hello.html</b> — 이름을 불러야 열려요</span></div>
+            <div class="fd-row"><span class="fd-url">…/my-first-web<b>/</b></span><span class="fd-ar">→</span><span class="fd-res no">index.html 이 없으면 <b>404 (없음)</b></span></div>
+          </div>
+          <p>그래서 대표 페이지를 <code>index.html</code> 로 두면 학생들에게 <b>짧은 주소</b>만 알려 줘도 바로 열려요. 주소가 짧을수록 받아 적거나 QR 로 만들 때 실수도 줄어요.</p>
+          <div class="ex"><b class="lead-b">지금 보고 계신 이 매뉴얼이 실제 예예요.</b> 이 매뉴얼 저장소에는 index.html 이 없고 <code>forstudent.html</code> 만 있어요. 직접 눌러 보세요.<br>
+            <span class="ln-ok">✓</span> <a href="https://scienceisjo.github.io/githubmanual/forstudent.html" target="_blank" rel="noopener">scienceisjo.github.io/githubmanual/<b>forstudent.html</b></a> → 열려요<br>
+            <span class="ln-bad">✕</span> <a href="https://scienceisjo.github.io/githubmanual/" target="_blank" rel="noopener">scienceisjo.github.io/githubmanual/</a> → 404 (끝의 파일 이름을 빼면)</div>
+        </div>
         <div class="ok"><div class="co-h">여기까지 했으면</div>저장소 첫 화면에 <code>index.html</code> 이 보일 거예요. 이제 공개 스위치만 켜면 돼요.</div>
       </div>
       <div class="navrow"><button class="navbtn prev" onclick="step(-1)">← 이전</button><span class="navpos">3 / 6</span><button class="navbtn next" onclick="step(1)">다음</button></div>
@@ -504,6 +587,7 @@ footer.maker .credit{color:var(--ink);font-weight:600}
   <section class="panel" id="panel-s4">
     <div class="step">
       <div class="step-head"><div class="num">4</div><h2 class="disp">GitHub Pages 켜기</h2></div>
+        <p class="lead">저장소는 원래 파일을 <b>보관만</b> 하는 곳이에요. <b>Pages</b> 를 켜면 GitHub 이 그 파일을 누구나 열 수 있는 <b>웹사이트로 공개</b>해 줘요.</p>
       <div class="step-body">
         <p>파일을 올렸다고 끝이 아니에요. <b>인터넷에 공개하는 스위치</b>를 켜야 링크가 생겨요. 사진의 번호 순서대로 누르세요.</p>
         <figure class="shot wide" data-marks='[
@@ -514,6 +598,15 @@ footer.maker .credit{color:var(--ink);font-weight:600}
           {"x":36.81,"y":58.6,"w":7.46,"h":4.88,"t":"/ (root) 그대로","d":"main 을 고르면 옆에 폴더 단추가 생겨요. <b>/ (root)</b> 그대로 둬요.","s":"bottom"},
           {"x":44.95,"y":58.6,"w":4.28,"h":4.88,"t":"Save 클릭","d":"<b>Save</b> 를 누르면 스위치 켜기 끝!","s":"right","pulse":1}
         ]'><img src="shots/pages-settings.png" alt="Settings → Pages 화면: Deploy from a branch, main, / (root), Save" loading="lazy"></figure>
+        <details class="fold">
+          <summary><span><span class="q">궁금하면 열기</span>Deploy from a branch · main · / (root) 는 무슨 뜻이에요?</span></summary>
+          <div class="fold-body">
+            <div class="fi"><b>Deploy from a branch</b> — “저장소에 있는 파일을 <b>그대로</b> 사이트로 내보내 줘”라는 뜻이에요. 다른 선택지(<i>GitHub Actions</i>)는 프로그램으로 사이트를 조립하는 고급 방식이라 쓸 일이 없어요.</div>
+            <div class="fi"><b>Branch(브랜치)와 main</b> — 브랜치는 저장소 안의 ‘버전 줄기’예요. 처음엔 <b>main</b> 하나뿐이고, 3단계에서 Commit 한 파일이 바로 여기 들어 있어요.</div>
+            <div class="fi"><b>/ (root)</b> — 저장소의 맨 바깥 폴더(첫 화면)예요. 다른 선택지 <i>/docs</i> 는 docs 라는 폴더 안의 파일만 공개하는 방식이에요.</div>
+            <div class="fi last">합치면 “<b>main 줄기의 첫 화면에 있는 파일을 웹사이트로 공개해 줘</b>”예요. 그래서 파일을 폴더 속에 넣어 올리면 주소가 달라져요.</div>
+          </div>
+        </details>
         <div class="tip"><div class="co-h">Settings 가 두 군데라 헷갈려요</div>GitHub 엔 Settings 가 ① <b>내 프로필</b> 설정, ② <b>저장소</b> 설정 두 군데 있어요. 화면 왼쪽 위에 <b>아이디 / 저장소이름</b> 이 보이는 화면의 탭 줄에 있는 Settings 를 눌러야 <b>Pages</b> 메뉴가 나와요.</div>
         <div class="warn"><div class="co-h">Save 를 눌러도 링크가 바로 안 떠요</div>정상이에요. GitHub 이 사이트를 ‘짓는’ 데 1~2분 걸려요. 다음 단계에서 기다렸다가 확인합니다.</div>
       </div>
@@ -525,12 +618,13 @@ footer.maker .credit{color:var(--ink);font-weight:600}
   <section class="panel" id="panel-s5">
     <div class="step">
       <div class="step-head"><div class="num">5</div><h2 class="disp">기다렸다가 내 링크 열기</h2></div>
+        <p class="lead">GitHub 이 저장소의 파일을 웹사이트로 내보내는 작업(<b>배포</b>, deploy)이 끝나길 기다렸다가, 생긴 링크를 여는 단계예요.</p>
       <div class="step-body">
         <div class="warn"><div class="co-h">먼저, 1~2분 기다리기</div>Save 를 누른 <b>직후엔 링크가 아직 없어요.</b> 보통 1~2분(가끔 3~5분) 걸려요. “링크가 없네?” 하고 포기하지 마세요.</div>
 
         <div class="h3">① 기다리는 동안 — 짓는 중인지 보기</div>
         <figure class="shot wide" data-marks='[
-          {"x":20.64,"y":9.06,"w":5.48,"h":4.65,"t":"Actions","d":"저장소 위쪽 탭 줄의 <b>Actions</b> 를 눌러요.","s":"bottom"},
+          {"x":20.64,"y":9.06,"w":5.48,"h":4.65,"t":"Actions","d":"저장소 위쪽 탭 줄의 <b>Actions</b> 를 눌러요. GitHub 이 대신 해 주는 자동 작업(사이트 짓기 등)의 진행 상황이 여기 보여요.","s":"bottom"},
           {"x":24.33,"y":39.84,"w":15.8,"h":7.08,"t":"주황 점 = 짓는 중","d":"<b>pages build and deployment</b> 앞의 <b>주황 점</b>은 ‘사이트를 짓는 중’이라는 뜻이에요. 다 지어지면 <b>초록 ✓</b> 로 바뀌어요.","s":"right"},
           {"x":84.89,"y":40.65,"w":4.53,"h":5.81,"t":"Queued → 끝나면 ✓","d":"<i>Queued</i> 는 ‘차례 기다리는 중’. 새로고침(<code>F5</code>)하며 초록 ✓ 가 될 때까지 기다려요.","s":"left"}
         ]'><img src="shots/actions-building.png" alt="Actions 탭: pages build and deployment 가 주황 점(Queued) 상태" loading="lazy"></figure>
@@ -571,6 +665,7 @@ footer.maker .credit{color:var(--ink);font-weight:600}
   <section class="panel" id="panel-s6">
     <div class="step">
       <div class="step-head"><div class="num">6</div><h2 class="disp">두 번째 실습 — 내 파일 올리기 <span class="tag">Upload files</span></h2></div>
+        <p class="lead">직접 만든 파일을 올릴 때 가장 많이 막히는 곳 — <b>이름이 index.html 이 아닌 파일</b>의 주소 찾기를 미리 겪어 보는 단계예요.</p>
       <div class="step-body">
         <p>이제 <b>직접 만든 파일</b>을 올리는 상황을 연습해요. AI로 만들었거나 다운로드한 파일은 이름이 <code>index.html</code> 이 아닌 경우가 대부분이에요. 이번엔 이름이 <code>hello.html</code> 인 파일을 <b>이름 그대로</b> 올리고, 그 파일의 링크를 찾아 들어가 봅니다.</p>
         <div class="key">
@@ -623,7 +718,7 @@ footer.maker .credit{color:var(--ink);font-weight:600}
         <div class="h3">③ 파일 끌어다 놓고 Commit</div>
         <figure class="shot wide" data-marks='[
           {"x":33.84,"y":36.72,"w":32.26,"h":8.78,"t":"여기로 끌어다 놓기 / choose your files","d":"다운로드 폴더의 <code>hello.html</code> 을 이 상자 안으로 <b>끌어다 놓아요.</b> 끌기가 어려우면 <b>choose your files</b> 를 눌러 다운로드 폴더에서 골라요. 상자 아래에 <i>hello.html</i> 이 나타나면 OK.","s":"bottom"},
-          {"x":18.51,"y":85.8,"w":17.03,"h":3.35,"t":"이대로 둬요","d":"<i>Commit directly to the main branch</i> 가 선택된 그대로 둬요.","s":"right"},
+          {"x":18.51,"y":85.8,"w":17.03,"h":3.35,"t":"이대로 둬요","d":"<i>Commit directly to the main branch</i> 가 선택된 그대로 둬요. main 에 저장해야 4단계에서 공개한 사이트에 반영돼요.","s":"right"},
           {"x":17.56,"y":95.61,"w":8.41,"h":4.39,"t":"Commit changes","d":"맨 아래 초록 <b>Commit changes</b> 를 눌러요.","s":"right","pulse":1}
         ]'><img src="shots/upload-page.png" alt="Upload files 화면: 파일 끌어다 놓는 상자와 Commit changes 버튼" loading="lazy"></figure>
         <div class="ok"><div class="co-h">확인</div>저장소 첫 화면에 <code>index.html</code> 과 <code>hello.html</code> <b>두 개</b>가 보이면 성공이에요. 파일이 바뀌면 사이트를 다시 짓기 때문에 이번에도 <b>1~2분</b> 기다려요. (5단계처럼 <b>Actions</b> 에서 주황 점 → 초록 ✓)</div>
@@ -650,12 +745,7 @@ footer.maker .credit{color:var(--ink);font-weight:600}
           <div class="um-out"></div>
         </div>
 
-        <div class="why">
-          <div class="wh">왜 hello.html 은 이름을 붙여야 열릴까요?</div>
-          <p>웹사이트는 누가 <b>폴더(주소)에 들어오면</b>, 거기서 <b>“기본으로 보여 줄 대표 파일”</b>을 자동으로 찾아요. 전 세계가 약속한 그 대표 파일 이름이 바로 <code>index.html</code> 이에요.</p>
-          <p>그래서 <code>index.html</code> 은 주소 끝에 아무것도 안 붙여도 열리고, 다른 이름의 파일은 <b>주소 끝에 그 이름을 직접 붙여야</b> 열려요. 이름도 안 붙이고 <code>index.html</code> 도 없으면 <b>404(없음)</b> 가 떠요.</p>
-          <div class="ex"><b>비유:</b> 식당(폴더)에 들어가면 직원이 자동으로 펼쳐 주는 ‘대표 메뉴판’이 <code>index.html</code> 이에요. 다른 메뉴판(<code>hello.html</code>)은 손님이 이름을 콕 집어 달라고 해야 가져다줘요.</div>
-        </div>
+        <div class="tip"><div class="co-h">3단계에서 읽은 내용을 직접 확인한 거예요</div>주소가 폴더(<code>/</code>)에서 끝나면 대표 파일 <code>index.html</code> 이 자동으로 열리고, 다른 이름의 파일은 주소 끝에 <b>이름을 불러야</b> 열려요.</div>
 
         <div class="block rules">
           <div class="block-title">직접 만든 파일을 올릴 때, 이것만 지키세요</div>
@@ -788,7 +878,7 @@ footer.maker .credit{color:var(--ink);font-weight:600}
       <div class="m"><div class="mi">📁</div><div><div class="mt">올렸는데 첫 화면에 파일이 안 보임</div><div class="md">폴더째 올려서 파일이 폴더 속에 숨었어요. <b>파일만</b> 다시 올리기 → 6단계.</div></div></div>
       <div class="m"><div class="mi">🔠</div><div><div class="mt">주소에 파일명 붙였는데도 404</div><div class="md">대소문자가 달라서요. <code>Game.html</code> ≠ <code>game.html</code>. 저장소에 보이는 <b>그대로</b> 입력.</div></div></div>
       <div class="m"><div class="mi">⚙️</div><div><div class="mt">Settings 에 Pages 메뉴가 안 보임</div><div class="md">프로필 설정에 들어갔어요. <b>저장소 탭 줄</b>의 Settings 로 → 4단계.</div></div></div>
-      <div class="m"><div class="mi">➕</div><div><div class="mt">저장소 만들기 버튼을 못 찾음</div><div class="md">주소창에 <code>github.com/new</code> 입력하면 바로 만들기 화면 → 2단계.</div></div></div>
+      <div class="m"><div class="mi">➕</div><div><div class="mt">저장소 만들기 버튼을 못 찾음</div><div class="md">오른쪽 위 <b>+</b>, 왼쪽 위 <b>☰ → Repositories</b>, 또는 주소창에 <code>github.com/new</code> → 2단계.</div></div></div>
       <div class="m"><div class="mi">🔁</div><div><div class="mt">고쳤는데 옛날 화면이 계속 보임</div><div class="md">브라우저가 옛 버전을 기억(캐시)해서요. 1~2분 뒤 <b>강력 새로고침</b> <code>Ctrl+Shift+R</code> (맥 <code>⌘+Shift+R</code>).</div></div></div>
       <div class="m"><div class="mi">🌐</div><div><div class="mt">버튼 이름이 사진과 달라요</div><div class="md">크롬 번역이 켜져 있어요. 주소창 오른쪽 번역 아이콘 → <b>영어</b>(원문)로 되돌리기.</div></div></div>
     </div>
