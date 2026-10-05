@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vercel 따라하기</title>
+<meta name="description" content="Vercel Drop으로 폴더를 끌어다 놓아 내 링크를 만드는 선생님용 따라하기 매뉴얼. 가입, 파일 준비, 올리기, 학생에게 나눌 주소, 다시 올리기, GitHub 저장소와 잇기, 안 될 때.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+/* Apple DESIGN.md — 흰/파치먼트 면, 잉크 #1d1d1f, 액션 블루 #0066cc 하나, 그라데이션·장식 그림자 없음 */
+:root{
+  --ink:#1d1d1f; --ink80:#333336; --muted:#6e6e73; --faint:#86868b;
+  --blue:#0066cc; --blue-focus:#0071e3; --blue-bg:#e8f1fb;
+  --canvas:#ffffff; --parch:#f5f5f7; --pearl:#fafafc;
+  --hair:#e0e0e0; --soft:#f0f0f0;
+  --tile:#272729; --tile2:#1d1d1f;
+  --green:#1d7f3a; --green-bg:#eef7f0;
+  --red:#d70015; --red-bg:#fff1f0;
+  --amber:#a05a00; --amber-bg:#fff8eb;
+  --mark:#ff3b30;               /* 캡처 위 클릭 표시 전용 */
+  --gh:#1f883d;
+  --font:-apple-system,BlinkMacSystemFont,'SF Pro Text','Pretendard','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;
+  --disp:-apple-system,BlinkMacSystemFont,'SF Pro Display','Pretendard','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;
+  --mono:ui-monospace,'SFMono-Regular',Consolas,'Pretendard','Malgun Gothic',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--font);font-size:17px;line-height:1.6;letter-spacing:-.01em;color:var(--ink);background:var(--canvas);-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:anywhere}
+::selection{background:#cfe3fa}
+b,strong{font-weight:600}
+code{font-family:var(--mono);background:var(--parch);color:var(--ink);padding:1px 6px;border-radius:6px;font-size:.88em;letter-spacing:0;word-break:break-all}
+
+/* 상단 바 (애플 서브내비: 반투명 파치먼트) */
+.topbar{position:sticky;top:0;z-index:30;background:rgba(245,245,247,.82);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid rgba(0,0,0,.08)}
+.tb-inner{max-width:980px;margin:0 auto;padding:0 16px;height:52px;display:flex;align-items:center;gap:18px}
+.tb-title{font-family:var(--disp);font-size:19px;font-weight:600;letter-spacing:-.02em;white-space:nowrap;flex-shrink:0}
+.pills{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin-left:auto}
+.pills::-webkit-scrollbar{display:none}
+.pill{flex:none;border:0;background:transparent;color:var(--ink80);font-family:var(--font);font-size:13px;letter-spacing:-.01em;padding:6px 12px;border-radius:980px;cursor:pointer;white-space:nowrap}
+.pill:hover{color:var(--blue)}
+.pill.active{background:var(--ink);color:#fff}
+.pill:focus-visible,.navbtn:focus-visible,.start-btn:focus-visible{outline:2px solid var(--blue-focus);outline-offset:2px}
+.progress{height:2px;background:transparent}
+.progress-fill{height:100%;background:var(--blue);width:0;transition:width .35s ease}
+@media(max-width:640px){.tb-title{display:none}.pills{margin-left:0}}
+
+main{max-width:820px;margin:0 auto;padding:0 16px 40px}
+.panel{display:none;animation:fade .3s ease}
+.panel.active{display:block}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
+/* 히어로 */
+.hero{text-align:center;padding:72px 8px 48px}
+.hero .eb{display:inline-block;font-size:14px;color:var(--muted);margin-bottom:10px}
+.hero h1{font-family:var(--disp);font-size:clamp(36px,7vw,56px);font-weight:600;line-height:1.08;letter-spacing:-.03em}
+.hero p{margin:18px auto 0;font-size:clamp(18px,2.4vw,21px);line-height:1.45;color:var(--ink80);max-width:600px}
+.hero .note{margin:26px auto 0;max-width:600px;font-size:15px;color:var(--muted)}
+
+.block{background:var(--parch);border-radius:18px;padding:28px;margin-top:16px}
+.block-title{font-family:var(--disp);font-size:21px;font-weight:600;letter-spacing:-.02em;margin-bottom:14px}
+
+.prep{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.prep .p{display:flex;align-items:center;gap:10px;background:var(--canvas);border-radius:12px;padding:13px 15px;font-size:15px}
+.prep .p .ic{font-size:18px;flex-shrink:0}
+@media(max-width:540px){.prep{grid-template-columns:1fr}}
+
+.overview{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.ov{background:var(--canvas);font-size:14px;font-weight:600;padding:7px 13px;border-radius:980px}
+.overview .a{color:var(--faint)}
+
+.routes{display:flex;flex-direction:column;gap:10px}
+.route{display:flex;gap:14px;align-items:flex-start;background:var(--canvas);border-radius:14px;padding:16px 18px}
+.route .rb{flex-shrink:0;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:16px;color:#fff;background:var(--ink)}
+.route.a .rb{background:var(--blue)}
+.route .rt{font-size:15px;color:var(--ink80)}
+.route .rt .rl{font-size:17px;font-weight:600;color:var(--ink);margin-bottom:2px}
+
+.start-btn{display:block;margin:36px auto 0;font-family:var(--font);font-size:17px;padding:13px 30px;border:none;border-radius:980px;background:var(--blue);color:#fff;cursor:pointer}
+.start-btn:hover{background:var(--blue-focus)}
+
+/* 단계 */
+.step{padding:56px 0 8px}
+.step-head{margin-bottom:22px}
+.num{font-size:14px;font-weight:600;color:var(--blue);letter-spacing:0;margin-bottom:6px}
+.num::before{content:"STEP "}
+.step-head h2{font-family:var(--disp);font-size:clamp(30px,5vw,40px);font-weight:600;line-height:1.1;letter-spacing:-.025em}
+.step-head .tag{display:inline-block;font-family:var(--font);font-size:13px;font-weight:600;color:var(--blue);background:var(--blue-bg);border-radius:980px;padding:4px 10px;vertical-align:middle;margin-left:4px;letter-spacing:0}
+.step-body>p{margin:12px 0;color:var(--ink80)}
+.sub-steps{list-style:none;counter-reset:ss;margin:14px 0}
+.sub-steps li{counter-increment:ss;position:relative;padding:9px 0 9px 36px;color:var(--ink80);border-top:1px solid var(--soft)}
+.sub-steps li:first-child{border-top:0}
+.sub-steps li::before{content:counter(ss);position:absolute;left:0;top:10px;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center}
+.h3{font-family:var(--disp);font-size:21px;font-weight:600;letter-spacing:-.02em;margin:30px 0 6px}
+
+.mock{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:16px 0;padding:14px;background:var(--parch);border-radius:14px}
+.chip{font-weight:600;font-size:14px;border-radius:8px;padding:6px 12px;white-space:nowrap}
+.chip.gh{background:var(--gh);color:#fff}
+.chip.gray,.chip.set{background:var(--canvas);color:var(--ink);border:1px solid var(--hair)}
+.mock .a{color:var(--faint)}
+
+/* 안내 상자: 면 색만 살짝 */
+.ok,.warn,.tip{border-radius:14px;padding:16px 18px;margin:14px 0;font-size:15px;color:var(--ink80)}
+.ok{background:var(--green-bg)} .warn{background:var(--red-bg)} .tip{background:var(--parch)}
+.co-h{font-weight:600;margin-bottom:4px;color:var(--ink)}
+.ok .co-h{color:var(--green)} .warn .co-h{color:var(--red)}
+
+/* ───── 캡처 + 클릭 표시 ───── */
+.shot{margin:22px 0}
+.shot-frame{position:relative;cursor:zoom-in;border-radius:12px;box-shadow:0 0 0 1px rgba(0,0,0,.08),rgba(0,0,0,.14) 2px 4px 24px;background:#fff}
+.shot-frame img{display:block;width:100%;height:auto;border-radius:12px}
+.mk{position:absolute;border:3px solid var(--mark);border-radius:10px;box-shadow:0 0 0 4px rgba(255,59,48,.18);pointer-events:none}
+.mk.pulse{animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(255,59,48,.18)}50%{box-shadow:0 0 0 9px rgba(255,59,48,.08)}}
+.mk-n{position:absolute;top:-13px;left:-13px;width:26px;height:26px;border-radius:50%;background:var(--mark);color:#fff;font:600 14px/26px var(--font);text-align:center;letter-spacing:0;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.mk-t{position:absolute;white-space:nowrap;background:var(--ink);color:#fff;font:600 13px/1 var(--font);letter-spacing:-.01em;padding:7px 10px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.mk-t.s-bottom{top:calc(100% + 8px);left:-3px}
+.mk-t.s-top{bottom:calc(100% + 8px);left:-3px}
+.mk-t.s-right{left:calc(100% + 10px);top:50%;transform:translateY(-50%)}
+.mk-t.s-left{right:calc(100% + 10px);top:50%;transform:translateY(-50%)}
+.mk-t.al-r{left:auto;right:-3px}
+.shot figcaption{margin-top:12px;font-size:14px;color:var(--muted)}
+.legend{list-style:none;margin:12px 0 0;display:flex;flex-direction:column;gap:6px}
+.legend li{display:flex;gap:10px;align-items:flex-start;font-size:15px;color:var(--ink80)}
+.legend .ln{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--mark);color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;margin-top:2px}
+@media(max-width:600px){.mk-t{display:none}.mk{border-width:2px}.mk-n{width:18px;height:18px;line-height:18px;font-size:11px;top:-21px;left:-2px}}
+.zoom{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.82);display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out;overflow:auto}
+.zoom.show{display:flex}
+.zoom .shot-frame{width:min(1400px,100%);cursor:zoom-out}
+.zoom .mk-t{display:block}
+
+/* 예제 코드 */
+.codesample{background:var(--tile2);border-radius:18px;margin:18px 0;overflow:hidden}
+.cs-bar{display:flex;align-items:center;gap:10px;padding:10px 12px 10px 18px;border-bottom:1px solid rgba(255,255,255,.1);flex-wrap:wrap}
+.cs-file{font-family:var(--mono);color:#f5f5f7;font-size:14px}
+.cs-btns{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.csbtn{border:none;font-family:var(--font);font-size:13px;padding:7px 14px;border-radius:980px;cursor:pointer;display:flex;align-items:center;gap:5px}
+.csbtn.copy2{background:rgba(255,255,255,.14);color:#fff}
+.csbtn.copy2:hover{background:rgba(255,255,255,.24)}
+.csbtn.copy2.done{background:var(--green)}
+.csbtn.dl{background:var(--blue);color:#fff}
+.csbtn.dl:hover{background:var(--blue-focus)}
+.codesample pre{margin:0;padding:16px 18px;overflow-x:auto}
+.codesample code{display:block;background:transparent;color:#f5f5f7;padding:0;font-size:13px;line-height:1.6;white-space:pre;word-break:normal}
+
+.preview-wrap{margin:18px 0 4px}
+.preview-lab{font-size:14px;color:var(--muted);margin-bottom:8px}
+.preview-frame{border-radius:14px;background:linear-gradient(135deg,#5b6cf0,#7a6cf5);color:#fff;text-align:center;padding:36px 20px}
+.preview-frame .pf-emoji{font-size:44px;margin-bottom:8px}
+.preview-frame .pf-title{font-size:22px;font-weight:700;margin-bottom:6px;font-family:'Malgun Gothic',sans-serif}
+.preview-frame .pf-sub{font-size:17px;opacity:.95;font-family:'Malgun Gothic',sans-serif}
+
+/* 4단계 두 방법 */
+.methods{display:flex;flex-direction:column;gap:14px;margin:18px 0}
+.method{border-radius:18px;padding:24px;background:var(--parch)}
+.method.a{background:var(--blue-bg)}
+.method .mh{font-family:var(--disp);font-size:21px;font-weight:600;letter-spacing:-.02em;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.method .mtag{font-family:var(--font);font-size:12px;font-weight:600;padding:4px 10px;border-radius:980px;background:var(--canvas);color:var(--ink80);letter-spacing:0}
+.method.a .mtag{color:var(--blue)}
+.method .mdesc{font-size:15px;color:var(--ink80);margin:8px 0 4px}
+.method .sub-steps li{border-color:rgba(0,0,0,.06)}
+
+/* 어두운 타일 — index.html 설명 */
+.why{background:var(--tile);color:#f5f5f7;border-radius:18px;padding:32px 28px;margin:22px 0}
+.why .wh{font-family:var(--disp);font-size:24px;font-weight:600;letter-spacing:-.02em;margin-bottom:10px}
+.why code{background:rgba(255,255,255,.12);color:#fff}
+.why p{margin:10px 0;color:#d2d2d7;font-size:16px}
+.why p b{color:#fff}
+.why .ex{background:rgba(255,255,255,.07);border-radius:12px;padding:14px 16px;margin-top:12px;font-size:15px;color:#d2d2d7}
+.why .ex b{color:#2997ff}
+
+/* 함정 */
+.trap{background:var(--red-bg);border-radius:18px;padding:26px 24px;margin:22px 0}
+.trap .th{font-family:var(--disp);font-size:21px;font-weight:600;letter-spacing:-.02em;color:var(--red);margin-bottom:10px;line-height:1.3}
+.trap p{margin:8px 0;color:var(--ink80);font-size:15px}
+.trap p b{color:var(--red)}
+.trap .arrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--canvas);border-radius:10px;padding:12px 14px;margin:10px 0;font-family:var(--font);font-size:14px;color:var(--ink80)}
+.trap .arrow .ar{color:var(--red)}
+.trap .arrow .bad{color:var(--red);font-weight:600;font-family:var(--mono)}
+.trap .h4{font-weight:600;color:var(--ink);margin:16px 0 4px}
+.trap .steps2{list-style:none;counter-reset:tt;margin:8px 0 4px}
+.trap .steps2 li{counter-increment:tt;position:relative;padding:8px 0 8px 36px;color:var(--ink80);font-size:15px}
+.trap .steps2 li::before{content:counter(tt);position:absolute;left:0;top:9px;width:24px;height:24px;border-radius:50%;background:var(--red);color:#fff;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center}
+
+.gb{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+@media(max-width:600px){.gb{grid-template-columns:1fr}}
+.gb .row{border-radius:12px;padding:14px 16px;background:var(--canvas)}
+.gb .lab{font-weight:600;font-size:14px;margin-bottom:8px}
+.gb .good .lab{color:var(--green)} .gb .bad .lab{color:var(--red)}
+.gb .codes{display:flex;flex-direction:column;gap:5px}
+.codebit{background:var(--parch);border-radius:7px;padding:6px 10px;font-family:var(--font);font-size:13px;color:var(--ink80);word-break:break-all}
+.codebit .x{color:var(--red);font-weight:600;font-family:var(--mono)} .codebit .o{color:var(--green);font-weight:600;font-family:var(--mono)}
+.block .gb .row{background:var(--canvas)}
+
+.prompt{background:var(--tile2);border-radius:14px;padding:16px 18px;margin:14px 0;position:relative}
+.prompt .pl{font-size:12px;color:#86868b;font-weight:600;display:block;margin-bottom:8px}
+.prompt code{display:block;background:transparent;color:#f5f5f7;padding:0;font-size:14px;line-height:1.65;white-space:pre-wrap;word-break:keep-all;font-family:var(--font)}
+.copy{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.14);border:0;color:#fff;font-family:var(--font);font-size:12px;padding:6px 12px;border-radius:980px;cursor:pointer;display:flex;align-items:center;gap:5px}
+.copy:hover{background:rgba(255,255,255,.24)} .copy.done{background:var(--green)}
+
+/* 6단계 링크 상자 */
+.linkbox{background:var(--parch);border-radius:18px;padding:22px;margin:16px 0}
+.linkbox .lh{font-weight:600;margin-bottom:10px}
+.fakeui{background:var(--canvas);border-radius:12px;padding:16px}
+.fakeui .bar{height:8px;border-radius:4px;background:var(--soft);margin:4px 0 12px;width:60%}
+.fakeui .livebox{background:#dafbe1;border:1px solid #aceebb;border-radius:8px;padding:12px 14px;font-size:14px;color:#116329;font-weight:600;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.fakeui .livebox .url{font-family:var(--mono);font-weight:400;color:var(--ink80);word-break:break-all}
+.fakeui .visit{background:var(--gh);color:#fff;font-size:13px;padding:6px 12px;border-radius:6px;white-space:nowrap}
+
+/* 도움말 */
+.fof{}
+.fof .fh{font-family:var(--disp);font-size:24px;font-weight:600;letter-spacing:-.02em;margin-bottom:6px;line-height:1.25}
+.fof .fsub{font-size:15px;color:var(--ink80);margin-bottom:6px}
+.fix{background:var(--canvas);border-radius:14px;padding:18px;margin:12px 0}
+.fix .fl{font-size:17px;font-weight:600;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.fix .fl .badge{font-size:12px;font-weight:600;color:#fff;background:var(--blue);border-radius:980px;padding:3px 10px}
+.fix .fl .badge.alt{background:var(--ink)}
+.fix .sub-steps{margin:4px 0 0}
+
+.mistakes .m{display:flex;gap:14px;padding:16px 0;border-top:1px solid rgba(0,0,0,.08)}
+.mistakes .m:first-of-type{border-top:none}
+.mistakes .mi{flex-shrink:0;font-size:22px;line-height:1.2}
+.mistakes .mt{font-weight:600;margin-bottom:3px}
+.mistakes .md{font-size:15px;color:var(--ink80)}
+
+.check{list-style:none;display:flex;flex-direction:column;gap:8px}
+.check li{display:flex;align-items:flex-start;gap:12px;background:var(--canvas);border-radius:12px;padding:13px 16px;cursor:pointer;font-size:15px;color:var(--ink80);transition:background .15s}
+.check li .box{flex-shrink:0;width:22px;height:22px;border-radius:50%;border:1.5px solid #c7c7cc;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700;margin-top:1px}
+.check li.on .box{background:var(--blue);border-color:var(--blue)}
+.check li.on .tx{color:var(--faint);text-decoration:line-through}
+.lastline{margin-top:14px;font-size:15px;color:var(--muted)}
+
+.celebrate{text-align:center;padding:12px 0}
+.celebrate .big{font-family:var(--disp);font-size:28px;font-weight:600;letter-spacing:-.02em;margin-bottom:6px}
+
+/* 이전/다음 */
+.navrow{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:40px;padding-top:22px;border-top:1px solid var(--soft)}
+.navbtn{font-family:var(--font);font-size:15px;padding:10px 20px;border-radius:980px;border:none;cursor:pointer}
+.navbtn.next{background:var(--blue);color:#fff}
+.navbtn.next:hover{background:var(--blue-focus)}
+.navbtn.prev{background:transparent;color:var(--blue)}
+.navbtn.prev:hover{text-decoration:underline}
+.navpos{color:var(--faint);font-size:14px}
+
+footer.maker{text-align:center;padding:28px 16px;color:var(--muted);font-size:13px;background:var(--parch);margin-top:24px}
+footer.maker .credit{color:var(--ink);font-weight:600}
+
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(16px);opacity:0;background:rgba(29,29,31,.92);color:#fff;font-size:15px;padding:11px 20px;border-radius:980px;transition:.22s;z-index:70;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* 2026-10 최종본 추가 */
+.bp{font-size:15px;color:var(--ink80);margin:8px 0}
+.dim{color:var(--faint)}
+.h4{font-weight:600;color:var(--ink);margin:16px 0 4px}
+.gloss{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.gloss div{background:var(--canvas);border-radius:12px;padding:11px 14px;display:flex;flex-direction:column;gap:2px}
+.gloss code{background:none;padding:0;font-weight:600;font-size:15px;color:var(--blue)}
+.gloss span{font-size:14px;color:var(--muted)}
+@media(max-width:540px){.gloss{grid-template-columns:1fr}}
+.shot.wide{width:min(1180px,calc(100vw - 32px));max-width:none;margin-left:50%;transform:translateX(-50%)}
+.key{display:flex;flex-direction:column;gap:8px;margin:18px 0;padding:18px 20px;border-radius:18px;background:var(--tile);color:#f5f5f7}
+.key .k-row{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;font-size:17px}
+.key code{background:rgba(255,255,255,.12);color:#fff;font-size:15px}
+.key b{color:#2997ff}
+.addr-wrap{background:var(--parch);border-radius:18px;padding:18px;margin:16px 0}
+.addr{display:flex;align-items:center;gap:10px;background:var(--canvas);border:1px solid var(--hair);border-radius:980px;padding:9px 16px;font-family:var(--mono);font-size:14px;color:var(--ink80);word-break:break-all}
+.addr .dot{flex-shrink:0;width:10px;height:10px;border-radius:50%;background:#c7c7cc}
+.addr .tail{color:#fff;background:var(--mark);padding:1px 6px;border-radius:5px;font-weight:600}
+.addr-note{font-size:14px;color:var(--muted);margin:6px 0 14px 16px}
+.addr-hint{font-size:13px;color:var(--faint)}
+.urlmaker{background:var(--blue-bg);border-radius:18px;padding:18px;margin:16px 0}
+.um-in{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:540px){.um-in{grid-template-columns:1fr}}
+.um-in label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--ink80);font-weight:600}
+.um-in input{font-family:var(--mono);font-size:15px;padding:10px 14px;border:1px solid var(--hair);border-radius:10px;background:#fff;color:var(--ink);outline:none}
+.um-in input:focus{border-color:var(--blue-focus);box-shadow:0 0 0 3px rgba(0,113,227,.18)}
+.um-out{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+.um-out .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#fff;border-radius:10px;padding:10px 14px}
+.um-out a{font-family:var(--mono);font-size:14px;color:var(--blue);text-decoration:none;word-break:break-all;flex:1;min-width:0}
+.um-out a:hover{text-decoration:underline}
+.um-out .what{font-size:12px;color:var(--muted);flex-shrink:0}
+.um-out .empty{font-size:14px;color:var(--muted)}
+.fixd{font-size:15px;color:var(--ink80);margin-bottom:6px}
+.rules{margin-top:22px}
+.lead{font-size:clamp(18px,2.3vw,21px);line-height:1.45;color:var(--ink80);margin:-6px 0 22px;letter-spacing:-.015em}
+.lead code{font-size:.8em}
+.h5{font-size:17px;font-weight:600;margin:26px 0 4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.h5 .mth{font-size:12px;font-weight:600;color:#fff;background:var(--ink);border-radius:980px;padding:3px 10px}
+.anat{font-family:var(--mono);font-size:clamp(14px,2.4vw,19px);background:var(--canvas);border-radius:14px;padding:16px 18px;word-break:break-all;line-height:1.7}
+.anat .a0{color:var(--faint)}
+.anat .a1,.anat .a2,.anat .a3{font-weight:600;padding:2px 6px;border-radius:6px;color:#fff}
+.anat .a1{background:var(--blue)} .anat .a2{background:var(--green)} .anat .a3{background:var(--mark)}
+.anat-key{display:flex;flex-direction:column;gap:6px;margin:14px 0 4px;font-size:15px;color:var(--ink80)}
+.anat-key div{display:flex;gap:10px;align-items:flex-start}
+.anat-key i{flex-shrink:0;width:14px;height:14px;border-radius:4px;margin-top:5px}
+.anat-key .k1{background:var(--blue)} .anat-key .k2{background:var(--green)} .anat-key .k3{background:var(--mark)}
+.fold{background:var(--parch);border-radius:14px;margin:14px 0}
+.fold summary{cursor:pointer;list-style:none;padding:15px 18px;font-weight:600;font-size:15px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.fold summary::-webkit-details-marker{display:none}
+.fold summary::after{content:"";flex-shrink:0;width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .2s;margin:-4px 4px 0 0}
+.fold[open] summary::after{transform:rotate(-135deg);margin-top:4px}
+.fold summary:focus-visible{outline:2px solid var(--blue-focus);outline-offset:2px;border-radius:14px}
+.fold .q{display:inline-block;font-size:12px;font-weight:600;color:var(--blue);background:var(--blue-bg);border-radius:980px;padding:2px 9px;margin-right:8px;vertical-align:1px}
+.fold-body{padding:0 18px 14px;font-size:15px;color:var(--ink80)}
+.fold-body .fi{padding:10px 0;border-top:1px solid rgba(0,0,0,.07)}
+.fold-body .fi b:first-child{color:var(--ink)}
+.fold-body .fi.last{color:var(--ink)}
+.why .soft{color:#a1a1a6}
+.why a{color:#2997ff;text-decoration:none;word-break:break-all}
+.why a:hover{text-decoration:underline}
+.why .ln-ok{color:#30d158;font-weight:700} .why .ln-bad{color:#ff6961;font-weight:700}
+.fd{display:flex;flex-direction:column;gap:8px;margin:16px 0}
+.fd-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.fd-url{font-family:var(--mono);font-size:14px;background:rgba(255,255,255,.1);border-radius:980px;padding:6px 14px;color:#f5f5f7}
+.fd-url b{color:#ffd60a}
+.fd-ar{color:#86868b}
+.fd-res{font-size:15px}
+.fd-res.yes{color:#f5f5f7} .fd-res.no{color:#ff6961}
+.why .ex b.lead-b{color:#fff}
+.shot.wide .legend,.shot.wide figcaption{max-width:788px;margin-left:auto;margin-right:auto}
+
+/* ── Netlify·Vercel 매뉴얼에 더한 것 ── */
+.shot.todo{margin:18px 0}
+.todo-box{border:1.5px dashed var(--hair);border-radius:14px;background:var(--pearl);padding:26px 18px;text-align:center;color:var(--muted);font-size:14px;line-height:1.55}
+.todo-box b{display:block;color:var(--ink80);font-size:15px;margin-bottom:4px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.two .c{background:var(--canvas);border-radius:12px;padding:16px 18px;font-size:15px;line-height:1.6}
+.two .c b.t{display:block;font-size:16px;margin-bottom:6px}
+@media(max-width:600px){.two{grid-template-columns:1fr}}
+.tree{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.tree .t{background:var(--parch);border-radius:12px;padding:14px 16px;font-size:14px;line-height:1.85}
+.tree .t .h{font-weight:600;font-size:14px;margin-bottom:6px}
+.tree .t.good .h{color:var(--green)} .tree .t.bad .h{color:var(--red)}
+.tree .i1{display:block;padding-left:1.5em} .tree .i2{display:block;padding-left:3em}
+.tree .note{display:block;font-size:13px;color:var(--muted);margin-top:4px}
+@media(max-width:600px){.tree{grid-template-columns:1fr}}
+.zlist{padding:12px 16px;background:var(--canvas);font-size:14px;line-height:1.9}
+.codesample .zlist code{display:inline;background:var(--parch);color:var(--ink);padding:1px 6px;border-radius:6px;font-size:.88em;line-height:inherit;white-space:nowrap}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.cmp3{width:100%;min-width:560px;border-collapse:collapse;font-size:14px;line-height:1.5;background:var(--canvas);border-radius:12px;overflow:hidden}
+.cmp3 th,.cmp3 td{padding:10px 12px;border-bottom:1px solid var(--soft);text-align:left;vertical-align:top}
+.cmp3 thead th{background:var(--ink);color:#fff;font-weight:600}
+.cmp3 tbody th{font-weight:600;white-space:nowrap;color:var(--ink80)}
+.cmp3 td.here{background:var(--blue-bg)}
+.cmp3 code{font-size:.85em}
+.mset{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.mset a{display:block;background:var(--canvas);border-radius:12px;padding:12px 15px;color:var(--ink);text-decoration:none;font-size:14px;border:1.5px solid transparent}
+.mset a b{display:block;font-size:16px;letter-spacing:-.01em}
+.mset a:hover{border-color:var(--blue)}
+.mset a.cur{border-color:var(--ink)}
+.mset a .now{color:var(--muted);font-size:13px}
+@media(max-width:600px){.mset{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="tb-inner">
+    <span class="tb-title">Vercel 배포하기</span>
+    <div class="pills" id="pills">
+      <button class="pill" data-tab="start">시작</button>
+      <button class="pill" data-tab="s1">1 가입</button>
+      <button class="pill" data-tab="s2">2 파일 준비</button>
+      <button class="pill" data-tab="s3">3 올리기</button>
+      <button class="pill" data-tab="s4">4 링크 나누기</button>
+      <button class="pill" data-tab="s5">5 다시 올리기</button>
+      <button class="pill" data-tab="s6">6 GitHub와 잇기</button>
+      <button class="pill" data-tab="help">안 될 때</button>
+    </div>
+  </div>
+  <div class="progress"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+
+<main>
+
+  <!-- START -->
+  <section class="panel active" id="panel-start">
+    <div class="hero">
+      <span class="eb">선생님을 위한 따라하기 가이드</span>
+      <h1 class="disp">Vercel로<br>인터넷에 올리기.</h1>
+      <p>Vercel도 폴더를 화면에 <b>끌어다 놓기만 하면</b> 누구나 열어 볼 수 있는 <b>내 링크</b>가 생기게 됩니다(Vercel Drop). GitHub에 저장소가 있다면 저장소와 이어 두고, GitHub에서 파일을 고칠 때마다 사이트가 <b>저절로</b> 바뀌게 할 수도 있습니다. 연습 파일로 올려 보고, 고친 파일을 다시 올리는 데까지 같이 해보겠습니다!</p>
+      <div class="note">위쪽 탭이나 아래 ‘다음’ 버튼으로 한 단계씩 따라와주세요. 화면 사진은 차례로 넣고 있습니다. 사진이 들어가면 사진 속 <b style="color:var(--mark)">빨간 네모와 번호</b>가 누를 곳을 알려 드립니다.</div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">완성하면 이런 주소가 생깁니다</div>
+      <div class="anat"><span class="a0">https://</span><span class="a1">my-science-quiz</span><span class="a0">.vercel.app/</span><span class="a3">hello.html</span></div>
+      <div class="anat-key">
+        <div><i class="k1"></i><span><b>프로젝트 이름</b>은 3단계에서 정합니다. 학생들에게 줄 정확한 주소는 4단계에서 확인합니다.</span></div>
+        <div><i class="k3"></i><span><b>파일 이름</b>은 올린 파일입니다. 이름이 <code>index.html</code> 이면 생략해도 열립니다.</span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">시작하기 전에 꼭 알아 두실 두 가지</div>
+      <div class="two">
+        <div class="c"><b class="t">🔗 학생에게는 짧은 주소를 줍니다</b>Vercel은 올릴 때마다 긴 주소도 함께 만듭니다. 긴 주소는 학생이 열면 <b>Vercel 로그인 화면</b>이 나올 수 있어서, 학생들에게는 <b>Domains</b> 에 적힌 짧은 주소 하나만 나눠 줍니다. (4단계)</div>
+        <div class="c"><b class="t">🧑‍🏫 무료(Hobby)는 개인·비상업 용도입니다</b>무료 요금제는 <b>개인·비상업 용도</b>로만 쓰게 되어 있습니다. 한 달에 <b>100GB</b>까지 내보낼 수 있고, 하루에 <b>100번</b>까지 올릴 수 있습니다. 쓸 수 있는 양을 넘기면 대부분 <b>30일</b>을 기다려야 다시 씁니다.</div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">영어 화면 그대로 따라해주세요</div>
+      <p class="bp">Vercel 화면은 영어로 되어 있습니다. 크롬이 <b>“이 페이지를 번역할까요?”</b> 하고 물어보면 <b>번역하지 말아주세요.</b> 번역하면 버튼 이름이 사진과 달라져서 오히려 더 헷갈리게 됩니다. 아래 단어만 알아두시면 충분합니다^^</p>
+      <div class="gloss">
+        <div><code>Sign Up</code><span>가입하기</span></div>
+        <div><code>Hobby</code><span>무료 요금제 (개인 용도)</span></div>
+        <div><code>Continue with GitHub</code><span>GitHub 계정으로 계속하기</span></div>
+        <div><code>Deploy</code><span>올리기</span></div>
+        <div><code>Project</code><span>프로젝트 (사이트 하나)</span></div>
+        <div><code>Domains</code><span>학생에게 줄 주소</span></div>
+        <div><code>Deployments</code><span>올린 기록 (긴 주소)</span></div>
+        <div><code>Settings</code><span>설정</span></div>
+        <div><code>Import</code><span>가져오기 (GitHub 저장소 잇기)</span></div>
+        <div><code>Deployment Protection</code><span>누가 볼 수 있는지 정하는 설정</span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">두 번 연습하고, 하나는 골라서 합니다</div>
+      <div class="routes">
+        <div class="route a"><div class="rb">1</div><div class="rt"><div class="rl">첫 실습 · 연습 묶음 올리기</div>이 페이지에서 내려받은 <code>my-first-web.zip</code> 을 <b>끌어다 놓아</b> 사이트를 만들고, 학생에게 줄 짧은 주소를 확인합니다. <span class="dim">(1~4단계)</span></div></div>
+        <div class="route b"><div class="rb">2</div><div class="rt"><div class="rl">두 번째 실습 · 고친 묶음 다시 올리기</div><code>my-first-web-v2.zip</code> 을 같은 프로젝트에 다시 올려, <b>링크는 그대로이고 내용만 바뀌는지</b> 확인합니다. <span class="dim">(5단계)</span></div></div>
+        <div class="route a"><div class="rb">+</div><div class="rt"><div class="rl">골라서 · GitHub 저장소와 잇기</div>GitHub 매뉴얼로 저장소를 만드셨다면 저장소와 이어서, GitHub에서 고칠 때마다 사이트가 저절로 바뀌게 합니다. <span class="dim">(6단계)</span></div></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">준비물</div>
+      <div class="prep">
+        <div class="p"><span class="ic">🐙</span>GitHub 계정 (권장) 또는 이메일</div>
+        <div class="p"><span class="ic">💻</span>인터넷 되는 컴퓨터 (크롬 권장)</div>
+        <div class="p"><span class="ic">🗂️</span>연습 묶음 (이 페이지에서 내려받습니다)</div>
+        <div class="p"><span class="ic">⏱️</span>15분</div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">한눈에 보는 순서</div>
+      <div class="overview">
+        <span class="ov">1 가입</span><span class="a">→</span>
+        <span class="ov">2 파일 준비</span><span class="a">→</span>
+        <span class="ov">3 올리기</span><span class="a">→</span>
+        <span class="ov">4 링크 나누기</span><span class="a">→</span>
+        <span class="ov">5 다시 올리기</span><span class="a">→</span>
+        <span class="ov">6 GitHub와 잇기</span>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">GitHub Pages, Netlify, Vercel 가운데 무엇을 쓸까요</div>
+      <p class="bp">셋 다 HTML 파일에 무료로 주소를 붙여 줍니다. 올리는 방법과 조심할 점이 조금씩 다릅니다.</p>
+      <div class="tscroll"><table class="cmp3">
+        <thead><tr><th></th><th>GitHub Pages</th><th>Netlify</th><th>Vercel</th></tr></thead>
+        <tbody>
+        <tr><th>올리는 법</th><td>저장소에 파일을 올리고 Pages를 켭니다</td><td>폴더를 끌어다 놓습니다</td><td class="here">폴더를 끌어다 놓거나, GitHub 저장소와 잇습니다</td></tr>
+        <tr><th>주소</th><td><code>아이디.github.io/저장소/</code></td><td><code>이름.netlify.app</code></td><td class="here"><code>이름.vercel.app</code></td></tr>
+        <tr><th>무료로 쓰는 양</th><td>사이트 1GB, 한 달 100GB</td><td>한 달 300크레딧<br>(올릴 때마다 15)</td><td class="here">개인·비상업 용도<br>한 달 100GB, 하루 100번 올리기</td></tr>
+        <tr><th>조심할 점</th><td>저장소를 Public으로 만듭니다</td><td>새 프로젝트는 비공개로 시작합니다</td><td class="here">학생에게는 짧은 주소를 줍니다</td></tr>
+        <tr><th>가입 나이</th><td>만 13세 이상</td><td>만 16세 이상<br>(개인정보 처리방침)</td><td class="here">만 16세 이상</td></tr>
+        <tr><th>이럴 때</th><td>자료를 모아 두고 오래 쓸 때</td><td>파일을 가장 빨리 올려 볼 때</td><td class="here">GitHub에서 고치면 사이트도 저절로 바뀌게 할 때</td></tr>
+        </tbody>
+      </table></div>
+      <div class="mset">
+      <a href="forstudent.html"><b>GitHub Pages</b>따라하기</a>
+      <a href="netlify.html"><b>Netlify</b>따라하기</a>
+      <a href="vercel.html" class="cur"><b>Vercel</b><span class="now">지금 보고 계신 매뉴얼</span></a>
+      </div>
+      <p class="bp" style="margin-top:12px;font-size:14px;color:var(--muted)">2026년 10월 5일 각 회사의 공식 안내를 기준으로 정리했습니다. 무료로 쓰는 양과 조건은 바뀔 수 있습니다.</p>
+    </div>
+
+    <button class="start-btn" onclick="goTab('s1')">시작하기</button>
+  </section>
+
+  <section class="panel" id="panel-s1">
+    <div class="step">
+      <div class="step-head"><div class="num">1</div><h2 class="disp">Vercel 가입하기 <span class="tag">Sign Up</span></h2></div>
+      <p class="lead">내 Vercel 계정을 만들어보겠습니다! Vercel Drop은 로그인해야 쓸 수 있습니다.</p>
+      <div class="step-body">
+        <ul class="sub-steps">
+          <li>주소창에 <code>vercel.com/signup</code> 을 입력해 들어가 주세요.</li>
+          <li>요금제를 고르라고 하면 무료인 <b>Hobby</b> 를 고르고, 이름을 적어 주세요.</li>
+          <li>가입 방법은 <b>Continue with GitHub</b> 를 권합니다. GitHub 매뉴얼에서 만든 계정으로 가입해 두면 6단계에서 저장소를 이을 때 편합니다. GitHub 계정이 없으면 이메일로 가입하셔도 됩니다.</li>
+          <li>Vercel 첫 화면(대시보드)이 보이면 가입이 끝난 것입니다.</li>
+        </ul>
+        <figure class="shot todo" data-shot="shots/vercel-signup.png"><div class="todo-box"><b>📷 화면 사진을 준비하고 있습니다</b>Vercel 가입 화면 (Hobby 고르기와 가입 방법)</div></figure>
+        <figure class="shot todo" data-shot="shots/vercel-dashboard.png"><div class="todo-box"><b>📷 화면 사진을 준비하고 있습니다</b>가입을 마친 뒤 처음 보이는 대시보드</div></figure>
+        <div class="warn"><div class="co-h">무료(Hobby)는 개인·비상업 용도입니다</div>Vercel 약관에 Hobby 요금제는 <b>개인적이거나 비상업적인 용도</b>로만 쓰게 되어 있습니다. 수업 자료를 나누는 데 쓰고, 돈을 받는 일에는 쓰지 않습니다.</div>
+        <div class="tip"><div class="co-h">학생 계정으로 시키지 않습니다</div>Vercel 약관은 <b>만 16세 이상</b>만 쓸 수 있게 되어 있습니다. 중학생 작품을 올릴 때도 <b>선생님 계정</b>으로 올려주세요.</div>
+      </div>
+      <div class="navrow"><button class="navbtn prev" onclick="step(-1)">← 처음</button><span class="navpos">1 / 6</span><button class="navbtn next" onclick="step(1)">다음</button></div>
+    </div>
+  </section>
+
+  <section class="panel" id="panel-s2">
+    <div class="step">
+      <div class="step-head"><div class="num">2</div><h2 class="disp">올릴 파일 준비하기</h2></div>
+      <p class="lead">올릴 파일을 한 묶음으로 준비해보겠습니다! 연습할 때는 이 페이지의 연습 묶음을 내려받고, 직접 만든 파일은 폴더 하나에 모아 주세요.</p>
+      <div class="step-body">
+        <div class="h3">① 연습 묶음 내려받기</div>
+        <p>아래 <b>내려받기</b> 단추를 누르면 <b>다운로드</b> 폴더에 <code>my-first-web.zip</code> 이 저장됩니다. 압축은 풀지 않고 이 파일 그대로 올립니다.</p>
+        <div class="codesample">
+          <div class="cs-bar"><span class="cs-file">my-first-web.zip</span><span class="cs-btns"><button class="csbtn dl" onclick="dlZip('v1')">⬇ 내려받기</button></span></div>
+          <div class="zlist"><div><code>index.html</code> 축하 화면 · 주소만 쳐도 열립니다</div><div><code>hello.html</code> 두 번째 파일 · 주소 끝에 <code>/hello.html</code> 을 붙여 엽니다</div></div>
+        </div>
+        <div class="preview-wrap">
+          <div class="preview-lab">올리고 나면 이렇게 보이게 됩니다</div>
+          <div class="preview-frame"><div class="pf-emoji">🎉</div><div class="pf-title">Vercel로 배포하기, 정말 쉽죠?</div><div class="pf-sub">선생님, 누구나 할 수 있어요!</div></div>
+        </div>
+        <div class="h3">② 직접 만든 파일이라면</div>
+        <ul class="sub-steps">
+          <li>바탕화면에 <b>새 폴더</b>를 하나 만들고, 이름을 띄어쓰기 없는 영어로 정해 주세요. (예: <code>science-quiz</code>)</li>
+          <li>첫 화면이 될 파일의 이름을 <code>index.html</code> 로 해서 이 폴더 <b>바로 안에</b> 넣어 주세요. 그래야 주소만 쳐도 열립니다.</li>
+          <li>그림이나 다른 HTML 파일도 <b>같은 폴더</b>에 넣어 주세요. 3단계에서 이 폴더를 통째로 끌어다 놓습니다.</li>
+        </ul>
+        <div class="tree">
+          <div class="t good"><div class="h">✓ 이렇게 넣어 주세요</div>📁 science-quiz<span class="i1">📄 index.html</span><span class="i1">📄 hello.html</span><span class="i1">🖼 photo.png</span><span class="note">이 폴더를 통째로 끌어다 놓습니다.</span></div>
+          <div class="t bad"><div class="h">✕ 이러면 첫 화면이 열리지 않습니다</div>📁 바탕화면의 다른 폴더<span class="i1">📁 science-quiz</span><span class="i2">📄 index.html</span><span class="note">바깥 폴더를 끌어다 놓으면 index.html 이 한 겹 더 안쪽에 있게 됩니다.</span></div>
+        </div>
+        <div class="tip"><div class="co-h">index.html 이 없으면 Vercel이 물어봅니다</div>폴더 맨 위에 <code>index.html</code> 이 없으면, Vercel이 올릴 때 <b>Root (/)</b> 메뉴에서 첫 화면으로 보여 줄 파일을 고르라고 합니다. 처음부터 첫 화면 파일 이름을 <code>index.html</code> 로 해 두는 편이 헷갈리지 않습니다.</div>
+        <div class="tip"><div class="co-h">왜 꼭 index.html 일까요?</div>주소가 <code>/</code> 로 끝나면 사이트는 그 폴더의 <b>대표 파일</b>을 알아서 찾아 보여 줍니다. 그 대표 파일의 이름이 <code>index.html</code> 입니다. 자세한 설명은 <a href="forstudent.html" target="_blank" rel="noopener">GitHub 매뉴얼</a> 3단계 맨 아래에 있습니다.</div>
+      </div>
+      <div class="navrow"><button class="navbtn prev" onclick="step(-1)">← 이전</button><span class="navpos">2 / 6</span><button class="navbtn next" onclick="step(1)">다음</button></div>
+    </div>
+  </section>
+
+  <section class="panel" id="panel-s3">
+    <div class="step">
+      <div class="step-head"><div class="num">3</div><h2 class="disp">끌어다 놓아 올리기 <span class="tag">Vercel Drop</span></h2></div>
+      <p class="lead">준비한 묶음을 Vercel 화면에 끌어다 놓아 사이트를 만들어보겠습니다! 이름을 정하고 Deploy 를 한 번 누르면 됩니다.</p>
+      <div class="step-body">
+        <ul class="sub-steps">
+          <li>로그인한 상태에서 주소창에 <code>vercel.com/drop</code> 을 입력해 들어가 주세요.</li>
+          <li>다운로드 폴더의 <code>my-first-web.zip</code> 을 화면에 <b>끌어다 놓아</b> 주세요. 끌어오기가 어려우면 화면의 <b>file</b> 이나 <b>folder</b> 를 눌러 골라 주셔도 됩니다.</li>
+          <li>올릴 곳(팀)은 그대로 두고, <b>프로젝트 이름</b>을 띄어쓰기 없는 영어 소문자로 적어 주세요. (예: <code>my-science-quiz</code>)</li>
+          <li><b>Deploy</b> 를 누르고 잠깐 기다리면 사이트가 만들어지고 주소가 생깁니다.</li>
+        </ul>
+        <figure class="shot todo" data-shot="shots/vercel-drop.png"><div class="todo-box"><b>📷 화면 사진을 준비하고 있습니다</b>vercel.com/drop 의 끌어다 놓는 화면</div></figure>
+        <figure class="shot todo" data-shot="shots/vercel-drop-form.png"><div class="todo-box"><b>📷 화면 사진을 준비하고 있습니다</b>프로젝트 이름을 적고 Deploy 를 누르는 화면</div></figure>
+        <figure class="shot todo" data-shot="shots/vercel-deployed.png"><div class="todo-box"><b>📷 화면 사진을 준비하고 있습니다</b>올리기가 끝난 프로젝트 화면</div></figure>
+        <div class="tip"><div class="co-h">zip 파일을 그대로 올려도 되나요?</div>네. Vercel Drop은 파일, 폴더, <code>.zip</code> 을 모두 받습니다. 압축을 풀었다면 풀린 <b>폴더</b>를 끌어다 놓으셔도 됩니다.</div>
+      </div>
+      <div class="navrow"><button class="navbtn prev" onclick="step(-1)">← 이전</button><span class="navpos">3 / 6</span><button class="navbtn next" onclick="step(1)">다음</button></div>
+    </div>
+  </section>
+
+  <section class="panel" id="panel-s4">
+    <div class="step">
+      <div class="step-head"><div class="num">4</div><h2 class="disp">학생에게 줄 링크 확인하기 <span class="tag">Domains</span></h2></div>
+      <p class="lead">학생들에게 나눠 줄 짧은 주소를 확인하고 열어보겠습니다! 긴 주소를 나누면 학생 화면에 로그인 창이 뜰 수 있습니다.</p>
+      <div class="step-body">
+        <div class="h3">① Domains 의 짧은 주소 찾기</div>
+        <ul class="sub-steps">
+          <li>프로젝트 화면에서 <b>Domains</b> 에 적힌 주소를 찾아 주세요. 보통 <code>프로젝트이름.vercel.app</code> 처럼 짧습니다. 이 주소가 학생들에게 줄 주소입니다.</li>
+          <li><b>Deployments</b> 목록에 보이는 긴 주소는 올릴 때마다 새로 생기는 주소입니다. 학생에게는 나누지 않습니다.</li>
+        </ul>
+        <figure class="shot todo" data-shot="shots/vercel-domains.png"><div class="todo-box"><b>📷 화면 사진을 준비하고 있습니다</b>프로젝트 화면의 Domains (짧은 주소)</div></figure>
+        <div class="h3">② 내 링크 열기</div>
+        <div class="addr-wrap">
+          <div class="addr"><span class="dot"></span><span class="u">https://my-science-quiz.vercel.app/</span></div>
+          <div class="addr-note"><code>index.html</code> 이 열립니다. (축하 화면)</div>
+          <div class="addr"><span class="dot"></span><span class="u">https://my-science-quiz.vercel.app/<b class="tail">hello.html</b></span></div>
+          <div class="addr-note"><code>hello.html</code> 이 열립니다. (끝에 파일 이름을 붙인 경우)</div>
+          <div class="addr-hint"><code>my-science-quiz</code> 자리에는 Domains 에 적힌 주소의 앞부분이 들어갑니다.</div>
+        </div>
+        <div class="urlmaker" data-files=",hello.html">
+          <div class="um-in">
+            <label>Domains 에 적힌 주소의 앞부분<input type="text" class="um-name" placeholder="my-science-quiz" autocomplete="off" spellcheck="false"></label>
+          </div>
+          <div class="um-out"></div>
+        </div>
+        <div class="ok"><div class="co-h">학생 화면으로 확인하기</div>크롬의 <b>시크릿 창</b>(<code>Ctrl</code> + <code>Shift</code> + <code>N</code>)이나 로그인하지 않은 휴대폰으로 짧은 주소를 열어 보세요. 축하 화면이 보이면 학생들도 볼 수 있는 것입니다.</div>
+        <div class="tip"><div class="co-h">긴 주소에서 로그인 창이 뜨는 까닭</div>프로젝트의 <b>Deployment Protection</b> 이 켜져 있으면, 긴 주소를 연 사람은 <b>Vercel 로그인 화면</b>으로 넘어갑니다. 기본 보호 범위(<b>Standard Protection</b>)에서 짧은 주소(Domains)는 빠져 있어서, 짧은 주소만 나누면 설정을 바꿀 필요가 없습니다.</div>
+      </div>
+      <div class="navrow"><button class="navbtn prev" onclick="step(-1)">← 이전</button><span class="navpos">4 / 6</span><button class="navbtn next" onclick="step(1)">다음</button></div>
+    </div>
+  </section>
+
+  <section class="panel" id="panel-s5">
+    <div class="step">
+      <div class="step-head"><div class="num">5</div><h2 class="disp">고친 파일 다시 올리기</h2></div>
+      <p class="lead">파일을 고친 뒤 같은 주소에 새 내용을 올려보겠습니다! 링크는 그대로이고 내용만 바뀝니다.</p>
+      <div class="step-body">
+        <div class="h3">① 고친 묶음 내려받기</div>
+        <p>연습용으로 축하 화면을 고쳐 둔 묶음입니다. <b>다운로드</b> 폴더에 <code>my-first-web-v2.zip</code> 이 저장됩니다.</p>
+        <div class="codesample">
+          <div class="cs-bar"><span class="cs-file">my-first-web-v2.zip</span><span class="cs-btns"><button class="csbtn dl" onclick="dlZip('v2')">⬇ 내려받기</button></span></div>
+          <div class="zlist"><div><code>index.html</code> 고친 축하 화면 (초록색으로 바뀜)</div><div><code>hello.html</code> 그대로 · 폴더 전체를 다시 올리기 때문에 함께 들어 있습니다</div></div>
+        </div>
+        <div class="preview-wrap">
+          <div class="preview-lab">올리고 나면 이렇게 보이게 됩니다</div>
+          <div class="preview-frame" style="background:linear-gradient(135deg,#1d7f3a,#2fa35a)"><div class="pf-emoji">🔄</div><div class="pf-title">고친 판이 올라갔습니다!</div><div class="pf-sub">링크는 그대로이고 내용만 바뀌었습니다.</div></div>
+        </div>
+        <div class="h3">② 대시보드의 프로젝트에 끌어다 놓기</div>
+        <ul class="sub-steps">
+          <li>Vercel 대시보드에서 내 프로젝트를 열어 주세요.</li>
+          <li><code>my-first-web-v2.zip</code> 을 프로젝트 화면에 끌어다 놓아 주세요. 같은 프로젝트에 새로 올린 판이 만들어집니다.</li>
+          <li>잠깐 기다렸다가 <b>짧은 주소</b>를 새로고침하면 “고친 판이 올라갔습니다!” 화면이 보입니다.</li>
+        </ul>
+        <figure class="shot todo" data-shot="shots/vercel-redeploy.png"><div class="todo-box"><b>📷 화면 사진을 준비하고 있습니다</b>프로젝트 화면에 고친 묶음을 끌어다 놓는 모습</div></figure>
+        <div class="warn"><div class="co-h">vercel.com/drop 에 다시 놓으면 새 프로젝트가 생깁니다</div>고친 파일은 꼭 <b>대시보드의 내 프로젝트</b>에 끌어다 놓아 주세요. <code>vercel.com/drop</code> 에 다시 놓으면 주소가 다른 새 프로젝트가 만들어집니다.</div>
+        <div class="warn"><div class="co-h">바뀐 파일만이 아니라 폴더 전체를 올려 주세요</div>새로 올린 판에는 그때 올린 파일만 들어갑니다. 고친 파일 하나만 올리면 나머지 파일이 사라지니, 늘 <b>폴더를 통째로</b> 올려 주세요.</div>
+        <div class="celebrate" style="margin-top:28px">
+          <div class="big disp">두 실습 모두 마치셨습니다!</div>
+          수업 자료나 학생 작품을 올리실 때 다시 열어보실 수 있도록 이 페이지에 순서대로 정리해두었습니다^^
+        </div>
+      </div>
+      <div class="navrow"><button class="navbtn prev" onclick="step(-1)">← 이전</button><span class="navpos">5 / 6</span><button class="navbtn next" onclick="step(1)">다음</button></div>
+    </div>
+  </section>
+
+  <section class="panel" id="panel-s6">
+    <div class="step">
+      <div class="step-head"><div class="num">6</div><h2 class="disp">GitHub 저장소와 잇기 (골라서) <span class="tag">Import</span></h2></div>
+      <p class="lead">GitHub 매뉴얼로 저장소를 만드셨다면, 저장소와 이어서 GitHub에서 고칠 때마다 사이트가 저절로 바뀌게 해보겠습니다!</p>
+      <div class="step-body">
+        <p>이 단계는 <b>골라서</b> 하시면 됩니다. 끌어다 놓기만으로 충분하시면 건너뛰셔도 괜찮습니다.</p>
+        <ul class="sub-steps">
+          <li>주소창에 <code>vercel.com/new</code> 를 입력해 들어가 주세요.</li>
+          <li>GitHub 계정을 처음 잇는다면, GitHub 화면이 열리고 Vercel이 볼 수 있는 저장소를 고르라고 합니다. 이을 저장소를 골라 허락해 주세요.</li>
+          <li>저장소 목록에서 이을 저장소(예: <code>my-first-web</code>) 옆의 <b>Import</b> 를 눌러 주세요.</li>
+          <li>설정은 그대로 두고 <b>Deploy</b> 를 눌러 주세요. 새 프로젝트가 만들어지고, 4단계처럼 <b>Domains</b> 에 짧은 주소가 생깁니다.</li>
+        </ul>
+        <figure class="shot todo" data-shot="shots/vercel-import.png"><div class="todo-box"><b>📷 화면 사진을 준비하고 있습니다</b>vercel.com/new 에서 GitHub 저장소 옆 Import 를 누르는 화면</div></figure>
+        <figure class="shot todo" data-shot="shots/vercel-git-deployed.png"><div class="todo-box"><b>📷 화면 사진을 준비하고 있습니다</b>저장소와 이어진 프로젝트 화면</div></figure>
+        <div class="ok"><div class="co-h">이제 GitHub에서 고치면 사이트도 바뀝니다</div>GitHub 저장소에서 파일을 고치고 <b>Commit changes</b> 를 누르면, Vercel이 알아서 새로 올립니다. 잠시 뒤 짧은 주소를 새로고침해 보세요.</div>
+        <div class="warn"><div class="co-h">Drop으로 만든 프로젝트와는 다른 프로젝트입니다</div>3단계에서 끌어다 놓아 만든 프로젝트는 GitHub과 이어지지 않습니다. 저장소와 이은 프로젝트는 주소가 따로 생기니, 학생들에게는 <b>둘 중 하나의 주소만</b> 나눠 주세요.</div>
+        <div class="tip"><div class="co-h">무료(Hobby)로 이을 수 있는 저장소</div>무료 요금제에서는 <b>내 개인 저장소</b>만 이을 수 있습니다. 학교나 모임의 GitHub 조직(organization)에 있는 비공개 저장소는 이을 수 없습니다.</div>
+      </div>
+      <div class="navrow"><button class="navbtn prev" onclick="step(-1)">← 이전</button><span class="navpos">6 / 6</span><button class="navbtn next" onclick="goTab('help')">혹시 안 되면</button></div>
+    </div>
+  </section>
+
+  <!-- HELP -->
+  <section class="panel" id="panel-help">
+    <div class="step" style="padding-bottom:0">
+      <div class="step-head"><div class="num" style="visibility:hidden">0</div><h2 class="disp">안 될 때</h2></div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">막혔을 때는 이 순서로 확인해주세요</div>
+      <ul class="sub-steps" style="margin-top:4px">
+        <li>아래 <b>‘자주 나는 오류’</b>에서 같은 증상을 찾아 그대로 따라해주세요.</li>
+        <li>직접 만든 코드가 이상하게 보이면 <b>‘내가 만든 코드가 HTML 이 아닐 때’</b>를 봐주세요.</li>
+        <li>그래도 안 되면 <b>AI 에게 묻는 문장</b>을 복사해서 Gemini·ChatGPT·Claude 에 붙여넣어주세요.</li>
+        <li>마지막으로 <b>체크리스트</b>로 하나씩 점검해주세요.</li>
+      </ul>
+    </div>
+
+    <div class="block mistakes">
+      <div class="block-title">자주 나는 오류 (증상과 해결)</div>
+      <div class="m"><div class="mi">🔐</div><div><div class="mt">학생이 열면 Vercel 로그인 화면이 뜸</div><div class="md">긴 주소(<b>Deployments</b> 의 주소)를 나눈 경우입니다. 프로젝트 화면의 <b>Domains</b> 에 적힌 짧은 주소를 나눠 주세요. (4단계)</div></div></div>
+      <div class="m"><div class="mi">🔗</div><div><div class="mt">‘404: NOT_FOUND’ 가 뜸</div><div class="md">폴더 <b>바로 안에</b> <code>index.html</code> 이 없습니다. 파일 이름을 <code>index.html</code> 로 하거나 폴더가 한 겹 더 들어가 있지 않은지 확인하고 다시 올려 주세요. 다른 이름의 파일은 주소 끝에 이름을 붙여 엽니다. (2단계)</div></div></div>
+      <div class="m"><div class="mi">🆕</div><div><div class="mt">고친 파일을 올렸더니 주소가 다른 사이트가 생김</div><div class="md"><code>vercel.com/drop</code> 에 다시 놓은 경우입니다. 대시보드의 <b>내 프로젝트</b>에 끌어다 놓아 주세요. (5단계)</div></div></div>
+      <div class="m"><div class="mi">🧩</div><div><div class="mt">다시 올렸더니 다른 파일이 사라짐</div><div class="md">고친 파일만 올린 경우입니다. 폴더 <b>전체</b>를 다시 올려 주세요. (5단계)</div></div></div>
+      <div class="m"><div class="mi">🔄</div><div><div class="mt">GitHub에서 고쳤는데 사이트가 그대로</div><div class="md">Drop으로 만든 프로젝트는 GitHub과 이어져 있지 않습니다. 6단계처럼 저장소를 이어 새 프로젝트를 만들어 주세요.</div></div></div>
+      <div class="m"><div class="mi">📂</div><div><div class="mt">이을 저장소가 목록에 없음</div><div class="md">GitHub에서 Vercel이 볼 수 있는 저장소를 고를 때 빠진 경우입니다. 연결 화면에서 그 저장소를 다시 허락해 주세요. 조직(organization)의 비공개 저장소는 무료 요금제에서 이을 수 없습니다. (6단계)</div></div></div>
+      <div class="m"><div class="mi">⏳</div><div><div class="mt">오늘은 더 올릴 수 없다고 나옴</div><div class="md">무료 요금제는 하루 100번까지 올릴 수 있습니다. 고칠 것을 모아서 올려 주세요.</div></div></div>
+      <div class="m"><div class="mi">🔤</div><div><div class="mt">한글이 깨져 보임</div><div class="md">코드 맨 위쪽에 <code>&lt;meta charset="UTF-8"&gt;</code> 이 있는지 확인해 주세요.</div></div></div>
+      <div class="m"><div class="mi">🔁</div><div><div class="mt">고쳤는데 예전 화면이 계속 보임</div><div class="md">브라우저가 예전 화면을 기억하고 있어서 그렇습니다. <b>강력 새로고침</b>(<code>Ctrl+Shift+R</code>, 맥은 <code>⌘+Shift+R</code>)을 해주세요.</div></div></div>
+      <div class="m"><div class="mi">🌐</div><div><div class="mt">버튼 이름이 설명과 다름</div><div class="md">크롬 번역이 켜져 있는 경우입니다. 주소창 오른쪽의 번역 아이콘을 눌러 <b>영어</b>(원문)로 되돌려주세요.</div></div></div>
+    </div>
+    <div class="block">
+      <div class="block-title">내가 만든 코드가 HTML 이 아닐 때</div>
+      <p class="bp">올렸는데 <b>화면이 이상하거나, 코드 글자만 보이거나, 열리지 않는다면</b> 그 코드가 ‘HTML 한 파일’이 아닐 수 있습니다. <b>코드 맨 윗줄</b>이 <code>&lt;!DOCTYPE html&gt;</code> 인지 먼저 확인해주세요. 아니라면 아래 문장을 AI 채팅에 붙여넣어 HTML 한 파일로 다시 받아 주세요.</p>
+        <div class="prompt">
+          <span class="pl">AI 에 붙여넣기</span>
+          <button class="copy" data-copy="fixPrompt"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>복사</button>
+          <code id="fixPrompt">지금 만든 걸 HTML 파일 하나로 다시 만들어줘. HTML, CSS, JavaScript를 전부 한 파일에 넣고, 맨 윗줄은 &lt;!DOCTYPE html&gt; 으로 시작하게 해줘. 다른 파일 없이 이 파일 하나만으로 작동해야 해. 파일 이름은 index.html 로 해줘.</code>
+        </div>
+    </div>
+    <div class="block">
+      <div class="block-title">그래도 안 되면 AI 에게 물어보세요</div>
+      <p class="bp">Gemini·ChatGPT·Claude 중 아무거나 열고 아래 문장을 <b>복사</b>해서 붙여넣어주세요. <code>___</code> 부분은 상황에 맞게 채워주시면 됩니다.</p>
+        <div class="prompt">
+          <span class="pl">AI 에게 붙여넣기 (___ 채우기)</span>
+          <button class="copy" data-copy="aiPrompt"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>복사</button>
+          <code id="aiPrompt">나는 Vercel에 HTML 파일을 올려서 학생들에게 링크로 나누려고 해. 그런데 문제가 생겼어.
+
+[문제: ___ ]  (예: 학생이 열면 Vercel 로그인 화면이 떠)
+
+- 올린 방법: ___  (예: vercel.com/drop 에 zip을 끌어다 놓음 / GitHub 저장소를 Import 함)
+- 올린 폴더 안의 파일 이름: ___  (예: index.html, quiz.html, photo.png)
+- 내 주소: https://___.vercel.app/
+- 코드 맨 윗줄: ___  (예: &lt;!DOCTYPE html&gt;)
+
+차근차근, 무엇이 문제이고 어떻게 고치는지 순서대로 알려줘. Vercel 버튼 이름은 영어 그대로 알려줘.</code>
+        </div>
+      <div class="tip" style="margin-bottom:0;background:var(--canvas)"><div class="co-h">잘 물어보는 요령</div>“안 돼요”라고만 쓰면 AI 도 알 수가 없습니다. <b>화면에 뜬 글자와 내 주소를 그대로</b> 알려줄수록 정확한 답이 나옵니다. 화면을 캡처해서 같이 붙여넣으셔도 좋습니다.</div>
+    </div>
+    <div class="block">
+      <div class="block-title">스스로 점검하기 (눌러서 체크)</div>
+      <ul class="check" id="check">
+        <li><span class="box">✓</span><span class="tx"><b>로그인한 상태</b>로 올렸습니다.</span></li>
+        <li><span class="box">✓</span><span class="tx">폴더 <b>바로 안에</b> <code>index.html</code> 이 있습니다. (한 겹 더 들어간 폴더 ❌)</span></li>
+        <li><span class="box">✓</span><span class="tx">학생들에게 <b>Domains 의 짧은 주소</b>를 나눴습니다.</span></li>
+        <li><span class="box">✓</span><span class="tx"><b>시크릿 창</b>으로 짧은 주소를 열어 확인했습니다.</span></li>
+        <li><span class="box">✓</span><span class="tx">고친 파일은 <b>대시보드의 내 프로젝트</b>에 <b>폴더 전체</b>로 올렸습니다.</span></li>
+        <li><span class="box">✓</span><span class="tx"><code>index.html</code> 이 아닌 파일은 주소 끝에 <b>파일 이름을 붙였습니다.</b></span></li>
+        <li><span class="box">✓</span><span class="tx">파일 이름 끝이 <code>.html</code> 하나입니다. (<code>.html.html</code> ❌)</span></li>
+      </ul>
+      <div class="lastline">위가 전부 ✓ 인데도 안 된다면 <b>‘AI 에게 물어보세요’ 문장</b>을 복사해서 붙여넣어보세요.</div>
+    </div>
+
+    <div class="navrow"><button class="navbtn prev" onclick="step(-1)">← 이전</button><span class="navpos">끝</span><button class="navbtn next" onclick="goTab('start')">처음으로</button></div>
+  </section>
+
+</main>
+
+<footer class="maker">
+  제작 : <span class="credit">해누리중학교 조승재(과학이조선생)</span>
+</footer>
+
+<div class="zoom" id="zoom" aria-hidden="true"></div>
+<div class="toast" id="toast">복사했습니다 ✓</div>
+<script>
+  var TABS=["start", "s1", "s2", "s3", "s4", "s5", "s6", "help"];
+  function goTab(id){
+    TABS.forEach(function(t){ var p=document.getElementById('panel-'+t); if(p) p.classList.toggle('active', t===id); });
+    document.querySelectorAll('.pill').forEach(function(pl){ pl.classList.toggle('active', pl.dataset.tab===id); });
+    var idx=TABS.indexOf(id);
+    var pct = idx<=0 ? 0 : (idx>=TABS.length-1 ? 100 : (idx/(TABS.length-1))*100);
+    document.getElementById('progressFill').style.width=pct+'%';
+    var ap=document.querySelector('.pill.active'); if(ap&&ap.scrollIntoView) ap.scrollIntoView({inline:'center',block:'nearest'});
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  function step(d){
+    var cur='start';
+    TABS.forEach(function(t){ var p=document.getElementById('panel-'+t); if(p&&p.classList.contains('active')) cur=t; });
+    var i=TABS.indexOf(cur)+d; if(i<0)i=0; if(i>TABS.length-1)i=TABS.length-1; goTab(TABS[i]);
+  }
+  document.querySelectorAll('.pill').forEach(function(pl){ pl.addEventListener('click',function(){ goTab(pl.dataset.tab); }); });
+
+  function showToast(msg){
+    var t=document.getElementById('toast'); t.textContent=msg||'복사했습니다 ✓'; t.classList.add('show');
+    setTimeout(function(){t.classList.remove('show'); t.textContent='복사했습니다 ✓';},1800);
+  }
+  function fallback(t){var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);}
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var txt=document.getElementById(btn.dataset.copy).innerText;
+      function done(){ showToast('복사했습니다 ✓'); btn.classList.add('done'); var o=btn.innerHTML; btn.innerHTML='복사됨 ✓'; setTimeout(function(){btn.classList.remove('done');btn.innerHTML=o;},1500); }
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(function(){fallback(txt);done();});}
+      else{fallback(txt);done();}
+    });
+  });
+
+  // 연습 묶음(zip) 만들기: 압축 없이 담는 zip(STORE) — 파일 이름은 영어만
+  var FILES={"v1": {"name": "my-first-web.zip", "list": [{"name": "index.html", "text": "<!DOCTYPE html>\n<html lang=\"ko\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>첫 배포 성공!</title>\n  <style>\n    body{margin:0;min-height:100vh;display:flex;\n      flex-direction:column;align-items:center;justify-content:center;\n      text-align:center;font-family:'Malgun Gothic',sans-serif;\n      color:#fff;background:linear-gradient(135deg,#5b6cf0,#7a6cf5);}\n    h1{font-size:2rem;margin:0 0 14px;}\n    p{font-size:1.2rem;opacity:.95;margin:0;}\n    .emoji{font-size:4rem;margin-bottom:8px;}\n  </style>\n</head>\n<body>\n  <div class=\"emoji\">🎉</div>\n  <h1>Vercel로 배포하기, 정말 쉽죠?</h1>\n  <p>선생님, 누구나 할 수 있어요!</p>\n</body>\n</html>\n"}, {"name": "hello.html", "text": "<!DOCTYPE html>\n<html lang=\"ko\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>두 번째 파일</title>\n  <style>\n    body{margin:0;min-height:100vh;display:flex;\n      flex-direction:column;align-items:center;justify-content:center;\n      text-align:center;font-family:'Malgun Gothic',sans-serif;\n      color:#1d1d1f;background:#f5f5f7;}\n    h1{font-size:2rem;margin:0 0 14px;}\n    p{font-size:1.2rem;margin:0;color:#555;}\n    .emoji{font-size:4rem;margin-bottom:8px;}\n    b{background:#fff;padding:2px 8px;border-radius:6px;}\n  </style>\n</head>\n<body>\n  <div class=\"emoji\">📮</div>\n  <h1>두 번째 파일도 열렸습니다!</h1>\n  <p>주소 맨 끝을 확인해보세요 → <b>/hello.html</b></p>\n</body>\n</html>\n"}]}, "v2": {"name": "my-first-web-v2.zip", "list": [{"name": "index.html", "text": "<!DOCTYPE html>\n<html lang=\"ko\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>고친 판</title>\n  <style>\n    body{margin:0;min-height:100vh;display:flex;\n      flex-direction:column;align-items:center;justify-content:center;\n      text-align:center;font-family:'Malgun Gothic',sans-serif;\n      color:#fff;background:linear-gradient(135deg,#1d7f3a,#2fa35a);}\n    h1{font-size:2rem;margin:0 0 14px;}\n    p{font-size:1.2rem;opacity:.95;margin:0;}\n    .emoji{font-size:4rem;margin-bottom:8px;}\n  </style>\n</head>\n<body>\n  <div class=\"emoji\">🔄</div>\n  <h1>고친 판이 올라갔습니다!</h1>\n  <p>링크는 그대로이고 내용만 바뀌었습니다.</p>\n</body>\n</html>\n"}, {"name": "hello.html", "text": "<!DOCTYPE html>\n<html lang=\"ko\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>두 번째 파일</title>\n  <style>\n    body{margin:0;min-height:100vh;display:flex;\n      flex-direction:column;align-items:center;justify-content:center;\n      text-align:center;font-family:'Malgun Gothic',sans-serif;\n      color:#1d1d1f;background:#f5f5f7;}\n    h1{font-size:2rem;margin:0 0 14px;}\n    p{font-size:1.2rem;margin:0;color:#555;}\n    .emoji{font-size:4rem;margin-bottom:8px;}\n    b{background:#fff;padding:2px 8px;border-radius:6px;}\n  </style>\n</head>\n<body>\n  <div class=\"emoji\">📮</div>\n  <h1>두 번째 파일도 열렸습니다!</h1>\n  <p>주소 맨 끝을 확인해보세요 → <b>/hello.html</b></p>\n</body>\n</html>\n"}]}};
+  function crc32(u8){
+    var t=crc32.t; if(!t){ t=crc32.t=[]; for(var n=0;n<256;n++){ var c=n; for(var k=0;k<8;k++) c=(c&1)?(0xEDB88320^(c>>>1)):(c>>>1); t[n]=c>>>0; } }
+    var c2=0xFFFFFFFF; for(var i=0;i<u8.length;i++) c2=t[(c2^u8[i])&0xFF]^(c2>>>8); return (c2^0xFFFFFFFF)>>>0;
+  }
+  function makeZip(list){
+    var enc=new TextEncoder(), parts=[], cen=[], off=0, csize=0;
+    list.forEach(function(f){
+      var nm=enc.encode(f.name), dt=enc.encode(f.text), crc=crc32(dt);
+      var lh=new DataView(new ArrayBuffer(30));
+      lh.setUint32(0,0x04034b50,true); lh.setUint16(4,20,true); lh.setUint16(6,0x0800,true); lh.setUint16(8,0,true);
+      lh.setUint16(10,0,true); lh.setUint16(12,(2026-1980)<<9|(10<<5)|5,true); lh.setUint32(14,crc,true);
+      lh.setUint32(18,dt.length,true); lh.setUint32(22,dt.length,true); lh.setUint16(26,nm.length,true); lh.setUint16(28,0,true);
+      parts.push(lh.buffer,nm,dt);
+      var ch=new DataView(new ArrayBuffer(46));
+      ch.setUint32(0,0x02014b50,true); ch.setUint16(4,20,true); ch.setUint16(6,20,true); ch.setUint16(8,0x0800,true); ch.setUint16(10,0,true);
+      ch.setUint16(12,0,true); ch.setUint16(14,(2026-1980)<<9|(10<<5)|5,true); ch.setUint32(16,crc,true); ch.setUint32(20,dt.length,true);
+      ch.setUint32(24,dt.length,true); ch.setUint16(28,nm.length,true); ch.setUint16(30,0,true); ch.setUint16(32,0,true); ch.setUint16(34,0,true);
+      ch.setUint16(36,0,true); ch.setUint32(38,0,true); ch.setUint32(42,off,true);
+      cen.push(ch.buffer,nm); csize+=46+nm.length; off+=30+nm.length+dt.length;
+    });
+    var end=new DataView(new ArrayBuffer(22));
+    end.setUint32(0,0x06054b50,true); end.setUint16(4,0,true); end.setUint16(6,0,true); end.setUint16(8,list.length,true); end.setUint16(10,list.length,true);
+    end.setUint32(12,csize,true); end.setUint32(16,off,true); end.setUint16(20,0,true);
+    return new Blob(parts.concat(cen,[end.buffer]),{type:'application/zip'});
+  }
+  function dlZip(kind){
+    var f=FILES[kind], url=URL.createObjectURL(makeZip(f.list)), a=document.createElement('a');
+    a.href=url; a.download=f.name; document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){URL.revokeObjectURL(url);},1500);
+    showToast(f.name+' 을 다운로드 폴더에 저장했습니다 ✓');
+  }
+
+  // 내 주소 만들기
+  var HOST='vercel.app', UMK='vlm-name', UM='';
+  try{ UM=localStorage.getItem(UMK)||''; }catch(e){}
+  function esc(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML;}
+  function umClean(v){ return (v||'').trim().toLowerCase().replace(/^https?:\/\//,'').replace(new RegExp('\\.'+HOST.replace('.','\\.')+'.*$'),'').replace(/[^a-z0-9-]/g,''); }
+  function umRender(){
+    document.querySelectorAll('.urlmaker').forEach(function(box){
+      var inp=box.querySelector('.um-name'); if(document.activeElement!==inp) inp.value=UM;
+      var out=box.querySelector('.um-out'), name=umClean(UM);
+      if(!name){ out.innerHTML='<div class="empty">칸을 채우면 여기에 내 주소가 나타납니다.</div>'; return; }
+      var base='https://'+name+'.'+HOST+'/';
+      out.innerHTML=box.dataset.files.split(',').map(function(f){
+        var href=base+f; return '<div class="row"><a href="'+esc(href)+'" target="_blank" rel="noopener">'+esc(href)+'</a><span class="what">'+(f?esc(f)+' 열기':'index.html 열기')+'</span></div>';
+      }).join('');
+    });
+  }
+  document.querySelectorAll('.urlmaker .um-name').forEach(function(inp){
+    inp.addEventListener('input',function(){ UM=inp.value; try{ localStorage.setItem(UMK,UM); }catch(e){} umRender(); });
+  });
+
+  // 체크리스트
+  document.querySelectorAll('#check li').forEach(function(li){ li.addEventListener('click',function(){ li.classList.toggle('on'); }); });
+
+  // 캡처 위 클릭 표시: <figure class="shot" data-marks='[{x,y,w,h(%),t:말풍선,d:설명,s:top|bottom|left|right,al:"r",pulse}]'><img …></figure>
+  document.querySelectorAll('figure.shot').forEach(function(fig){
+    var img=fig.querySelector('img'); if(!img) return;
+    var frame=document.createElement('div'); frame.className='shot-frame';
+    img.parentNode.insertBefore(frame,img); frame.appendChild(img);
+    var marks=[]; try{ marks=JSON.parse(fig.dataset.marks||'[]'); }catch(e){ console.warn('marks JSON 오류',fig,e); }
+    var ol=document.createElement('ol'); ol.className='legend';
+    marks.forEach(function(m,i){
+      var box=document.createElement('div'); box.className='mk'+(m.pulse?' pulse':'');
+      box.style.cssText='left:'+m.x+'%;top:'+m.y+'%;width:'+m.w+'%;height:'+m.h+'%';
+      var h='<span class="mk-n">'+(i+1)+'</span>';
+      if(m.t) h+='<span class="mk-t s-'+(m.s||'bottom')+(m.al==='r'?' al-r':'')+'">'+esc(m.t)+'</span>';
+      box.innerHTML=h; frame.appendChild(box);
+      if(m.d){ var li=document.createElement('li'); li.innerHTML='<span class="ln">'+(i+1)+'</span><span>'+m.d+'</span>'; ol.appendChild(li); }
+    });
+    var cap=fig.querySelector('figcaption'); if(ol.children.length) fig.insertBefore(ol,cap||null);
+    frame.addEventListener('click',function(){ var z=document.getElementById('zoom'); z.innerHTML=''; z.appendChild(frame.cloneNode(true)); z.classList.add('show'); });
+  });
+  document.getElementById('zoom').addEventListener('click',function(){ this.classList.remove('show'); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') document.getElementById('zoom').classList.remove('show'); });
+
+  umRender();
+  goTab('start');
+</script>
+<footer id="app-credit" style="width:100%;box-sizing:border-box;margin:2.5rem 0 0;padding:14px 12px;text-align:center;font-size:12.5px;line-height:1.6;color:#8a8f98;font-family:system-ui,-apple-system,'Segoe UI','Malgun Gothic',sans-serif;border-top:1px solid rgba(128,128,128,.25);">© 2026 조승재(과학이조선생) · 해누리중학교 · All rights reserved<br><span style="font-size:11px;opacity:.85;">최종 업데이트: 2026-10-05</span></footer>
+</body>
+</html>

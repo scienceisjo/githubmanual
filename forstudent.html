@@ -316,6 +316,38 @@ footer.maker .credit{color:var(--ink);font-weight:600}
 .fd-res.yes{color:#f5f5f7} .fd-res.no{color:#ff6961}
 .why .ex b.lead-b{color:#fff}
 .shot.wide .legend,.shot.wide figcaption{max-width:788px;margin-left:auto;margin-right:auto}
+
+/* ── Netlify·Vercel 매뉴얼에 더한 것 ── */
+.shot.todo{margin:18px 0}
+.todo-box{border:1.5px dashed var(--hair);border-radius:14px;background:var(--pearl);padding:26px 18px;text-align:center;color:var(--muted);font-size:14px;line-height:1.55}
+.todo-box b{display:block;color:var(--ink80);font-size:15px;margin-bottom:4px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.two .c{background:var(--canvas);border-radius:12px;padding:16px 18px;font-size:15px;line-height:1.6}
+.two .c b.t{display:block;font-size:16px;margin-bottom:6px}
+@media(max-width:600px){.two{grid-template-columns:1fr}}
+.tree{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.tree .t{background:var(--parch);border-radius:12px;padding:14px 16px;font-size:14px;line-height:1.85}
+.tree .t .h{font-weight:600;font-size:14px;margin-bottom:6px}
+.tree .t.good .h{color:var(--green)} .tree .t.bad .h{color:var(--red)}
+.tree .i1{display:block;padding-left:1.5em} .tree .i2{display:block;padding-left:3em}
+.tree .note{display:block;font-size:13px;color:var(--muted);margin-top:4px}
+@media(max-width:600px){.tree{grid-template-columns:1fr}}
+.zlist{padding:12px 16px;background:var(--canvas);font-size:14px;line-height:1.9}
+.codesample .zlist code{display:inline;background:var(--parch);color:var(--ink);padding:1px 6px;border-radius:6px;font-size:.88em;line-height:inherit;white-space:nowrap}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.cmp3{width:100%;min-width:560px;border-collapse:collapse;font-size:14px;line-height:1.5;background:var(--canvas);border-radius:12px;overflow:hidden}
+.cmp3 th,.cmp3 td{padding:10px 12px;border-bottom:1px solid var(--soft);text-align:left;vertical-align:top}
+.cmp3 thead th{background:var(--ink);color:#fff;font-weight:600}
+.cmp3 tbody th{font-weight:600;white-space:nowrap;color:var(--ink80)}
+.cmp3 td.here{background:var(--blue-bg)}
+.cmp3 code{font-size:.85em}
+.mset{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.mset a{display:block;background:var(--canvas);border-radius:12px;padding:12px 15px;color:var(--ink);text-decoration:none;font-size:14px;border:1.5px solid transparent}
+.mset a b{display:block;font-size:16px;letter-spacing:-.01em}
+.mset a:hover{border-color:var(--blue)}
+.mset a.cur{border-color:var(--ink)}
+.mset a .now{color:var(--muted);font-size:13px}
+@media(max-width:600px){.mset{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -410,6 +442,29 @@ footer.maker .credit{color:var(--ink);font-weight:600}
         <span class="ov">5 링크</span><span class="a">→</span>
         <span class="ov">6 내 파일 올리기</span>
       </div>
+    </div>
+
+
+    <div class="block">
+      <div class="block-title">GitHub Pages, Netlify, Vercel 가운데 무엇을 쓸까요</div>
+      <p class="bp">셋 다 HTML 파일에 무료로 주소를 붙여 줍니다. 올리는 방법과 조심할 점이 조금씩 다릅니다.</p>
+      <div class="tscroll"><table class="cmp3">
+        <thead><tr><th></th><th>GitHub Pages</th><th>Netlify</th><th>Vercel</th></tr></thead>
+        <tbody>
+        <tr><th>올리는 법</th><td class="here">저장소에 파일을 올리고 Pages를 켭니다</td><td>폴더를 끌어다 놓습니다</td><td>폴더를 끌어다 놓거나, GitHub 저장소와 잇습니다</td></tr>
+        <tr><th>주소</th><td class="here"><code>아이디.github.io/저장소/</code></td><td><code>이름.netlify.app</code></td><td><code>이름.vercel.app</code></td></tr>
+        <tr><th>무료로 쓰는 양</th><td class="here">사이트 1GB, 한 달 100GB</td><td>한 달 300크레딧<br>(올릴 때마다 15)</td><td>개인·비상업 용도<br>한 달 100GB, 하루 100번 올리기</td></tr>
+        <tr><th>조심할 점</th><td class="here">저장소를 Public으로 만듭니다</td><td>새 프로젝트는 비공개로 시작합니다</td><td>학생에게는 짧은 주소를 줍니다</td></tr>
+        <tr><th>가입 나이</th><td class="here">만 13세 이상</td><td>만 16세 이상<br>(개인정보 처리방침)</td><td>만 16세 이상</td></tr>
+        <tr><th>이럴 때</th><td class="here">자료를 모아 두고 오래 쓸 때</td><td>파일을 가장 빨리 올려 볼 때</td><td>GitHub에서 고치면 사이트도 저절로 바뀌게 할 때</td></tr>
+        </tbody>
+      </table></div>
+      <div class="mset">
+      <a href="forstudent.html" class="cur"><b>GitHub Pages</b><span class="now">지금 보고 계신 매뉴얼</span></a>
+      <a href="netlify.html"><b>Netlify</b>따라하기</a>
+      <a href="vercel.html"><b>Vercel</b>따라하기</a>
+      </div>
+      <p class="bp" style="margin-top:12px;font-size:14px;color:var(--muted)">2026년 10월 5일 각 회사의 공식 안내를 기준으로 정리했습니다. 무료로 쓰는 양과 조건은 바뀔 수 있습니다.</p>
     </div>
 
     <button class="start-btn" onclick="goTab('s1')">시작하기</button>
@@ -1050,6 +1105,6 @@ footer.maker .credit{color:var(--ink);font-weight:600}
   umRender();
   goTab('start');
 </script>
-<footer id="app-credit" style="width:100%;box-sizing:border-box;margin:2.5rem 0 0;padding:14px 12px;text-align:center;font-size:12.5px;line-height:1.6;color:#8a8f98;font-family:system-ui,-apple-system,'Segoe UI','Malgun Gothic',sans-serif;border-top:1px solid rgba(128,128,128,.25);">© 2026 조승재(과학이조선생) · 해누리중학교 · All rights reserved<br><span style="font-size:11px;opacity:.85;">최종 업데이트: 2026-10-03</span></footer>
+<footer id="app-credit" style="width:100%;box-sizing:border-box;margin:2.5rem 0 0;padding:14px 12px;text-align:center;font-size:12.5px;line-height:1.6;color:#8a8f98;font-family:system-ui,-apple-system,'Segoe UI','Malgun Gothic',sans-serif;border-top:1px solid rgba(128,128,128,.25);">© 2026 조승재(과학이조선생) · 해누리중학교 · All rights reserved<br><span style="font-size:11px;opacity:.85;">최종 업데이트: 2026-10-05</span></footer>
 </body>
 </html>
